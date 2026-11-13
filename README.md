@@ -16,13 +16,14 @@ Analytics.
 
 ## Estado del desarrollo
 
-**Fase 1 de 12 (Arquitectura y preparación): completada. La Fase 2 no ha
-empezado.**
+**Fase 2 de 12 (Diseño visual y estructura principal): implementada y
+verificada; pendiente de la validación del propietario.**
 
-El repositorio contiene la base técnica y la documentación. **Todavía no hay
-ninguna funcionalidad implementada**: ni módulos, ni interfaz definitiva, ni
-backend, ni integraciones. La aplicación muestra una pantalla provisional que
-solo confirma que la base técnica funciona.
+La aplicación tiene su interfaz principal: barra lateral, barra superior,
+dashboard y la página inicial de los seis módulos, adaptada de móvil a
+pantallas grandes. **Todavía no hay ninguna funcionalidad de negocio**: no
+hay datos, backend ni integraciones, y todas las secciones muestran estados
+vacíos.
 
 Estado detallado: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md). Plan completo:
 [ROADMAP.md](ROADMAP.md).
@@ -33,6 +34,9 @@ Estado detallado: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md). Plan completo:
 - Vite 8
 - TypeScript 7
 - Tailwind CSS 4
+- React Router 8
+- lucide-react (iconos)
+- Geist (tipografía alojada con la aplicación)
 - oxlint
 
 Candidatas para fases posteriores, todavía sin instalar ni contratar: Supabase
@@ -53,8 +57,8 @@ npm install
 
 ## Configuración
 
-En la Fase 1 no hace falta ninguna configuración: la aplicación no usa
-variables de entorno ni servicios externos.
+No hace falta ninguna configuración: la aplicación todavía no usa variables
+de entorno ni servicios externos.
 
 El archivo `.env.example` describe la convención que se seguirá cuando existan
 variables. Los archivos `.env` reales nunca se suben al repositorio.
@@ -84,11 +88,11 @@ dealhunter/
 ├── vite.config.ts      Configuración de Vite
 ├── src/
 │   ├── main.tsx        Arranque de React
-│   ├── app/            Composición de la aplicación
+│   ├── app/            Enrutador, layout, navegación y dashboard
 │   ├── modules/        Los seis módulos oficiales
-│   ├── shared/         Código común a varios módulos
+│   ├── shared/         Componentes, hooks y utilidades comunes
 │   ├── services/       Acceso a servicios externos
-│   ├── config/         Configuración de la aplicación
+│   ├── config/         Registro de módulos, navegación y métricas
 │   └── styles/         Tailwind y tokens de diseño
 └── *.md                Documentación del proyecto
 ```

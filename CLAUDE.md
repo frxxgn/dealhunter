@@ -31,9 +31,11 @@ está en `PROJECT_CONTEXT.md`, sección 2.
 
 ## Tecnologías
 
-React 19, Vite 8, TypeScript 7 (estricto), Tailwind CSS 4 y oxlint, con npm y
-Node.js 22.12 o superior. Candidatas no instaladas: Supabase (Fase 3) y Vercel
-(Fase 12). Versiones y motivos: `ARCHITECTURE.md`, secciones 2 y 21.
+React 19, Vite 8, TypeScript 7 (estricto), Tailwind CSS 4, React Router 8,
+lucide-react (iconos), Geist (tipografía alojada con la aplicación) y oxlint,
+con npm y Node.js 22.12 o superior. Candidatas no instaladas: Supabase
+(Fase 3) y Vercel (Fase 12). Versiones y motivos: `ARCHITECTURE.md`,
+secciones 2 y 21.
 
 ## Comandos verificados
 
@@ -54,15 +56,16 @@ Antes de dar por terminado un cambio de código deben pasar `npm run lint` y
 ```
 src/
 ├── main.tsx     Arranque de React
-├── app/         Composición de la aplicación
+├── app/         Enrutador, layout, navegación, dashboard y errores
 ├── modules/     Los seis módulos oficiales, una carpeta cada uno
-├── shared/      Código común a varios módulos
+├── shared/      Componentes, hooks y utilidades comunes
 ├── services/    Acceso a servicios externos, tras interfaces propias
-├── config/      Configuración de la aplicación
+├── config/      Registro de módulos, navegación y métricas
 └── styles/      Tailwind y tokens de diseño
 ```
 
 Detalle y estructura interna de cada módulo: `ARCHITECTURE.md`, secciones 3 y 4.
+Tokens y componentes disponibles: `ARCHITECTURE.md`, sección 8.
 
 ## Reglas permanentes de desarrollo
 
@@ -73,20 +76,28 @@ Detalle y estructura interna de cada módulo: `ARCHITECTURE.md`, secciones 3 y 4
    duplicado.
 3. **Integraciones desacopladas.** Todo proveedor externo queda detrás de una
    interfaz propia. Las llamadas con clave se hacen desde el servidor.
-4. **Tokens de diseño.** Los componentes usan los tokens del tema, no colores
-   escritos a mano.
+4. **Tokens y componentes.** Tema exclusivamente oscuro. Los componentes usan
+   los tokens del tema, no colores escritos a mano. Antes de crear un
+   componente, comprueba si ya existe en `src/shared/components/`.
 5. **TypeScript estricto.** Sin `any` ni supresiones de errores sin motivo
    documentado.
 6. **Coste.** Código convencional y reglas transparentes antes que IA. Caché
    antes que repetir una llamada externa.
 7. **Seguridad.** Ningún secreto en el repositorio ni en variables `VITE_`.
    Cada variable nueva se añade a `.env.example` sin su valor.
-8. **Idioma.** Documentación e interfaz en español. Identificadores de código
-   en inglés.
-9. **Dependencias.** Antes de añadir una, comprueba que es necesaria, gratuita
-   y compatible con las versiones instaladas.
-10. **Commits.** Formato Conventional Commits con la descripción en español.
-    No se crean pull requests ni se fusionan ramas sin petición expresa.
+8. **Idioma.** Documentación e interfaz en español, sin mezclar inglés en los
+   textos visibles. Se mantienen los nombres propios: «DealHunter»,
+   «Dashboard» y los de los seis módulos. Identificadores de código en inglés.
+9. **Dependencias.** Antes de instalar una, justifica su utilidad y pide
+   aprobación al propietario. Debe ser gratuita y compatible con las versiones
+   instaladas.
+10. **Repositorio.** La rama principal es `main`. Commits en formato
+    Conventional Commits con la descripción en español. Nunca se fuerza un
+    push ni se reescribe el historial. No se crean pull requests sin petición
+    expresa.
+11. **Interfaz honesta.** Sin datos ficticios: donde no hay datos reales se
+    muestra un estado vacío. Ningún control aparenta una función que no
+    existe.
 
 ## Restricciones
 

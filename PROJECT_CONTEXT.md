@@ -147,11 +147,33 @@ negro profundo y grafito; verde esmeralda como color de acento; transparencias
 sutiles; microanimaciones elegantes; tipografía moderna; tarjetas limpias;
 gráficos interactivos; excelente jerarquía visual; diseño responsive.
 
-### 3.2 Estructura visual prevista (se construye en la Fase 2)
+Decisiones confirmadas por el propietario al iniciar la Fase 2:
+
+- Tema visual exclusivamente oscuro.
+- Toda la interfaz en español, sin mezclar inglés. Se mantienen los nombres
+  propios: «DealHunter», «Dashboard» y los de los seis módulos.
+- Logotipo provisional: el nombre «DealHunter» en texto. No se inventa un
+  símbolo ni un logotipo definitivo.
+- El verde esmeralda se usa de forma estratégica: elementos importantes,
+  estados y acciones principales.
+- Ningún botón decorativo que aparente una acción inexistente.
+
+### 3.2 Estructura visual (Fase 2)
 
 Barra lateral de navegación; dashboard principal; barra superior; búsqueda
 global; notificaciones; perfil de usuario; panel de actividad; widgets de
 métricas; vistas adaptables a escritorio y móvil.
+
+Concreción aprobada para la Fase 2:
+
+- **Barra lateral:** el nombre DealHunter, Dashboard y los seis módulos en
+  este orden: Lead Hunter, Business Intelligence, Demo Factory, Proposal
+  Engine, Sales Command y Revenue Analytics. Ninguna sección más.
+- **Barra superior:** únicamente el título de la sección actual, la búsqueda
+  global, las notificaciones y el perfil de usuario.
+- **Dashboard:** resumen de actividad, widgets de métricas, panel de
+  actividad y accesos a los seis módulos.
+- **Módulos:** una página inicial por módulo, coherente con su finalidad.
 
 ### 3.3 Administración global (se construye en la Fase 11)
 
@@ -186,35 +208,49 @@ verificar antes la base legal y contar con autorización.
 
 ## 4. Estado actual
 
-| Campo                    | Valor                                                                    |
-| ------------------------ | ------------------------------------------------------------------------ |
-| Fase actual              | Fase 1 · Arquitectura y preparación                                      |
-| Estado de la fase        | COMPLETADA. Criterios verificados el 2026-11-13 (detalle en `ROADMAP.md`) |
-| Última tarea completada  | Verificación de la Fase 1 y actualización de la documentación            |
-| Próxima tarea autorizada | **Ninguna.** La Fase 2 requiere autorización expresa del propietario     |
+| Campo                    | Valor                                                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------------- |
+| Fase actual              | Fase 2 · Diseño visual y estructura principal                                                 |
+| Estado de la fase        | EN PROGRESO. Implementada y verificada técnicamente el 2026-11-13; falta la validación del propietario |
+| Última tarea completada  | Interfaz principal construida, verificada, documentada y subida a `main`                      |
+| Próxima tarea autorizada | **Ninguna.** Pendiente de que el propietario valide la Fase 2. La Fase 3 requiere autorización expresa |
+
+Fases anteriores: Fase 1 COMPLETADA (2026-11-13).
 
 ## 5. Arquitectura actual (resumen)
 
 Aplicación de una sola página (SPA) con React, Vite y TypeScript, organizada
-como **monolito modular**: una carpeta por cada módulo oficial en
-`src/modules/`, código común en `src/shared/`, integraciones desacopladas en
-`src/services/` y configuración en `src/config/`. Todavía no existe backend.
+como **monolito modular**:
 
-Detalle completo, estructura de carpetas y motivos: `ARCHITECTURE.md`.
+- `src/app/`: enrutador, estructura principal (barra lateral, barra superior
+  y menú móvil), navegación, dashboard y páginas de error.
+- `src/modules/`: una carpeta por módulo oficial, con su página inicial. Cada
+  módulo se carga bajo demanda.
+- `src/shared/`: sistema de componentes, hooks y utilidades comunes.
+- `src/config/`: registro de módulos, secciones navegables y métricas.
+- `src/services/`: reservado para las integraciones; vacío.
+
+Todavía no existe backend. Detalle completo y motivos: `ARCHITECTURE.md`.
 
 ## 6. Tecnologías elegidas
 
-Instaladas y verificadas en la Fase 1:
+Instaladas y verificadas:
 
-| Tecnología           | Versión | Uso                                  |
-| -------------------- | ------- | ------------------------------------ |
-| React / React DOM    | 19.3.1  | Interfaz                             |
-| Vite                 | 8.3.8   | Servidor de desarrollo y compilación |
-| @vitejs/plugin-react | 6.3.0   | Integración de React en Vite         |
-| TypeScript           | 7.0.2   | Tipado estático (modo estricto)      |
-| Tailwind CSS         | 4.3.5   | Estilos y tokens de diseño           |
-| @tailwindcss/vite    | 4.3.5   | Integración de Tailwind en Vite      |
-| oxlint               | 1.93.0  | Análisis estático (linter)           |
+| Tecnología                 | Versión | Uso                                  | Desde  |
+| -------------------------- | ------- | ------------------------------------ | ------ |
+| React / React DOM          | 19.3.1  | Interfaz                             | Fase 1 |
+| Vite                       | 8.3.8   | Servidor de desarrollo y compilación | Fase 1 |
+| @vitejs/plugin-react       | 6.3.0   | Integración de React en Vite         | Fase 1 |
+| TypeScript                 | 7.0.2   | Tipado estático (modo estricto)      | Fase 1 |
+| Tailwind CSS               | 4.3.5   | Estilos y tokens de diseño           | Fase 1 |
+| @tailwindcss/vite          | 4.3.5   | Integración de Tailwind en Vite      | Fase 1 |
+| oxlint                     | 1.93.0  | Análisis estático (linter)           | Fase 1 |
+| react-router               | 8.5.1   | Navegación entre secciones           | Fase 2 |
+| lucide-react               | 1.72.0  | Iconografía                          | Fase 2 |
+| @fontsource-variable/geist | 5.3.0   | Tipografía Geist, alojada con la app | Fase 2 |
+
+Las tres de la Fase 2 son gratuitas, de código abierto y fueron aprobadas por
+el propietario antes de instalarlas.
 
 Entorno verificado: Node.js 22.23.4 y npm 10.9.9.
 
@@ -234,36 +270,79 @@ Registro completo con motivos en `ARCHITECTURE.md`, sección 21. Resumen:
 - D-007 · Alias de importación `@/` hacia `src/`.
 - D-008 · Documentación e interfaz en español; identificadores de código en
   inglés.
+- D-009 · React Router como enrutador.
+- D-010 · lucide-react para la iconografía.
+- D-011 · Tipografía Geist alojada con la aplicación.
+- D-012 · Tema exclusivamente oscuro y logotipo textual provisional.
+- D-013 · Los controles sin funcionalidad abren un panel que explica su
+  estado real.
+- D-014 · Menú móvil y paneles flotantes propios, sin librería de primitivas.
+- D-015 · Escala global de la interfaz en pantallas grandes.
+- D-016 · La rama principal es `main`; nunca se fuerza un push.
+
+Decisiones de diseño de la Fase 2 que el propietario puede revisar al validar:
+
+- Los widgets de métricas del dashboard muestran seis de las métricas
+  oficiales del Módulo F: oportunidades descubiertas, negocios analizados,
+  demostraciones creadas, presupuestos preparados, clientes convertidos e
+  ingresos.
+- Los contenedores de la página inicial de cada módulo se han nombrado a
+  partir de las funciones oficiales de la sección 2, sin añadir ninguna.
+- Cada página de módulo indica «En preparación» y la fase en la que se
+  desarrollará.
 
 ## 8. Funcionalidades implementadas
 
-**Ninguna.** No hay ningún módulo, pantalla definitiva, backend, base de
-datos, autenticación ni integración. Solo existe la base técnica y una
-pantalla provisional que comprueba que React, TypeScript y Tailwind funcionan.
+**Ninguna funcionalidad de negocio.** Existe la interfaz principal, solo como
+estructura visual y con estados vacíos:
+
+- Barra lateral con el nombre DealHunter, el Dashboard y los seis módulos, en
+  su orden, con indicación de la sección activa.
+- Barra superior con el título de la sección, la búsqueda global, las
+  notificaciones y el perfil de usuario.
+- Menú de navegación para móvil y tablet.
+- Dashboard con resumen de actividad, seis widgets de métricas, accesos a los
+  seis módulos y panel de actividad.
+- Página inicial de cada uno de los seis módulos.
+- Navegación con una dirección propia por sección, página para direcciones
+  inexistentes y barrera de errores.
+- Diseño adaptado a móvil, tablet, portátil, escritorio y pantallas grandes.
+
+Lo que **no** hace todavía:
+
+- La búsqueda global, las notificaciones y el perfil de usuario no tienen
+  funcionalidad: cada control abre un panel que lo explica.
+- No hay ningún dato: todas las métricas, gráficos y listas están vacíos.
+- No hay backend, base de datos, autenticación ni servicios externos.
+
+Componentes y archivos creados: `CHANGELOG.md`, versión 0.2.0.
 
 ## 9. Funcionalidades pendientes
 
-Todas las de la sección 2 y los apartados 3.2 y 3.3, repartidas en las Fases 2
-a 12 de `ROADMAP.md`.
+- Toda la funcionalidad de los seis módulos (sección 2): Fases 4 a 9.
+- Backend, base de datos, usuarios y permisos: Fase 3.
+- Búsqueda global, notificaciones y perfil de usuario reales: cuando existan
+  los datos y las cuentas de los que dependen.
+- Automatizaciones: Fase 10.
+- Administración global (apartado 3.3): Fase 11.
+- Auditoría de seguridad, pruebas y despliegue: Fase 12.
 
 ## 10. Decisiones pendientes de aprobación del propietario
 
-Ninguna bloquea la Fase 1. Cada una indica cuándo hace falta.
+| N.º | Decisión                                                                               | Recomendación                                                              | Necesaria para        |
+| --- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | --------------------- |
+| 1   | Validar el resultado visual de la Fase 2                                               | Revisar la aplicación o sus capturas                                       | Cerrar la Fase 2      |
+| 2   | Confirmar Supabase como backend, su plan y región                                      | Supabase, plan gratuito, región de la UE; la cuenta la crea el propietario | Fase 3                |
+| 3   | Dónde se ejecuta la lógica de servidor                                                 | Funciones de Supabase (alternativa: funciones de Vercel)                   | Fase 3                |
+| 4   | Modelo de datos multiorganización desde el inicio, para la futura evolución a SaaS     | Sí: evita migrar todos los datos más adelante                              | Fase 3                |
+| 5   | Roles de usuario y permisos de cada uno                                                | A definir con el propietario; no se inventan roles                         | Fase 3                |
+| 6   | Fuentes de datos de negocios y su coste                                                | Evaluar fuentes legítimas y su coste antes de elegir                       | Fase 4                |
+| 7   | Catálogo de automatizaciones                                                           | Lo define y aprueba el propietario                                         | Fase 10               |
+| 8   | Alojamiento del frontend: comprobar si el plan gratuito de Vercel admite uso comercial | Verificar condiciones antes de desplegar                                   | Fase 12               |
 
-| N.º | Decisión                                                                                                           | Recomendación                                                         | Necesaria para |
-| --- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | -------------- |
-| 1   | Rama principal del repositorio: estaba vacío y no existe `main`                                                    | Crear `main` a partir del trabajo de la Fase 1                        | Fase 2         |
-| 2   | Idioma de la interfaz y si hará falta multiidioma                                                                  | Solo español al inicio                                                | Fase 2         |
-| 3   | ¿Habrá modo claro además del oscuro predeterminado?                                                                | Solo modo oscuro al inicio                                            | Fase 2         |
-| 4   | Logotipo y recursos de marca de DealHunter, si existen                                                             | Si no existen, usar el nombre en texto                                | Fase 2         |
-| 5   | Tipografía de la interfaz (forma parte de la identidad visual)                                                     | Se propondrán opciones en la Fase 2, alojadas con la propia aplicación | Fase 2         |
-| 6   | Confirmar Supabase como backend, su plan y región                                                                  | Supabase, plan gratuito, región de la UE; la cuenta la crea el propietario | Fase 3    |
-| 7   | Dónde se ejecuta la lógica de servidor                                                                             | Funciones de Supabase (alternativa: funciones de Vercel)              | Fase 3         |
-| 8   | Modelo de datos multiorganización desde el inicio, para la futura evolución a SaaS                                 | Sí: evita migrar todos los datos más adelante                         | Fase 3         |
-| 9   | Roles de usuario y permisos de cada uno                                                                            | A definir con el propietario; no se inventan roles                    | Fase 3         |
-| 10  | Fuentes de datos de negocios y su coste                                                                            | Evaluar fuentes legítimas y su coste antes de elegir                  | Fase 4         |
-| 11  | Catálogo de automatizaciones                                                                                       | Lo define y aprueba el propietario                                    | Fase 10        |
-| 12  | Alojamiento del frontend: comprobar si el plan gratuito de Vercel admite uso comercial                             | Verificar condiciones antes de desplegar                              | Fase 12        |
+Resueltas por el propietario en la Fase 2: rama principal (`main`), idioma
+(solo español), tema (solo oscuro), logotipo (texto provisional) y tipografía
+(Geist).
 
 ## 11. MEJORAS PENDIENTES DE APROBACIÓN
 
@@ -275,6 +354,10 @@ Ideas no solicitadas. **No se implementan sin aprobación expresa.**
   consumir minutos de ejecución.
 - **Linter con información de tipos.** Añadir `oxlint-tsgolint` para detectar
   más errores. Es una dependencia de desarrollo gratuita.
+- **Pruebas de interfaz en el repositorio.** La Fase 2 se verificó con un
+  guion de navegador de un solo uso. Guardarlo como pruebas permanentes
+  permitiría repetir esa verificación en cada fase. Requiere añadir
+  Playwright, una dependencia de desarrollo gratuita.
 
 No hay ninguna mejora funcional propuesta.
 
@@ -283,16 +366,21 @@ No hay ninguna mejora funcional propuesta.
 - **`typescript-eslint` no admite TypeScript 7** (exige una versión inferior a
   6.1). No afecta al proyecto: se usa oxlint, igual que la plantilla oficial
   de Vite.
-- **El repositorio no tiene rama `main`.** Estaba vacío y el trabajo se ha
-  hecho en la rama `claude/busy-davinci-yfa32d`. Ver decisión pendiente n.º 1.
-- **No hay pruebas automatizadas.** Es intencionado: en la Fase 1 no existe
-  lógica de negocio que probar. Ver `ARCHITECTURE.md`, sección 19.
+- **No hay pruebas automatizadas en el repositorio.** Todavía no existe lógica
+  de negocio que probar. Ver `ARCHITECTURE.md`, sección 19.
+- **El alojamiento deberá devolver `index.html` para cualquier ruta.** En
+  local funciona sin configuración; al desplegar (Fase 12) habrá que
+  configurarlo en el proveedor.
 
 ## 13. Información necesaria para continuar
 
-Para empezar la Fase 2 hace falta:
+1. Que el propietario valide la Fase 2 (decisión pendiente n.º 1).
+2. Autorización expresa del propietario para iniciar la Fase 3.
+3. Para la Fase 3: respuesta a las decisiones n.º 2 a 5 y, si se confirma
+   Supabase, que el propietario cree la cuenta y el proyecto. Claude no
+   registra ni contrata servicios.
 
-1. Autorización expresa del propietario para iniciar la Fase 2.
-2. Respuesta a las decisiones pendientes n.º 1 a 5 de la sección 10.
+Repositorio: la rama principal es `main`. El propietario autorizó el
+2026-11-13 subir el trabajo directamente a `main`, siempre sin forzar.
 
 Comandos de trabajo verificados: `README.md`. Reglas de trabajo: `CLAUDE.md`.

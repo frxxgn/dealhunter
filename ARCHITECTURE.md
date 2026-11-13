@@ -3,7 +3,7 @@
 > Fuente de verdad de las decisiones técnicas. Cada apartado distingue lo que
 > **existe hoy** de lo que está **previsto** para una fase posterior.
 >
-> Última actualización: 2026-11-13 (Fase 1).
+> Última actualización: 2026-11-13 (Fase 2).
 
 ## 1. Principios
 
@@ -27,7 +27,7 @@
 
 ## 2. Tecnologías
 
-### Instaladas (Fase 1)
+### Instaladas
 
 | Tecnología           | Versión | Motivo                                                                    |
 | -------------------- | ------- | ------------------------------------------------------------------------- |
@@ -38,6 +38,9 @@
 | Tailwind CSS         | 4.3.5   | Preferencia del propietario; tokens de diseño definidos en CSS            |
 | @tailwindcss/vite    | 4.3.5   | Integración oficial de Tailwind 4 en Vite (admite Vite 8)                 |
 | oxlint               | 1.93.0  | Linter de la plantilla oficial de Vite; compatible con TypeScript 7       |
+| React Router         | 8.5.1   | Una dirección propia por sección y carga de cada módulo bajo demanda      |
+| lucide-react         | 1.72.0  | Iconografía consistente                                                   |
+| Geist (Fontsource)   | 5.3.0   | Tipografía alojada con la aplicación, sin peticiones a terceros           |
 
 Tipos de desarrollo: `@types/react`, `@types/react-dom` y `@types/node` (rama
 22, igual que la versión de Node.js del proyecto).
@@ -81,38 +84,46 @@ dealhunter/
 └── src/
     ├── main.tsx            Arranque de React
     ├── app/                Composición de la aplicación
-    │   └── App.tsx         Pantalla provisional de la Fase 1
-    ├── modules/            Los seis módulos oficiales (solo carpetas)
+    │   ├── App.tsx         Conecta el enrutador con React
+    │   ├── router.tsx      Rutas: el dashboard y los seis módulos
+    │   ├── layout/         Estructura principal: barra lateral, barra
+    │   │                   superior (con sus paneles) y menú móvil
+    │   ├── navigation/     Lista y enlaces de navegación
+    │   ├── dashboard/      Pantalla principal y sus bloques
+    │   └── errors/         Página no encontrada y barrera de errores
+    ├── modules/            Los seis módulos oficiales
     │   ├── lead-hunter/
     │   ├── business-intelligence/
     │   ├── demo-factory/
     │   ├── proposal-engine/
     │   ├── sales-command/
     │   └── revenue-analytics/
-    ├── shared/             Código común a varios módulos (vacío)
+    ├── shared/             Código común a varios módulos
+    │   ├── components/     Sistema de componentes reutilizables
+    │   ├── hooks/          Hooks comunes
+    │   └── lib/            Utilidades
     ├── services/           Acceso a servicios externos (vacío)
-    ├── config/             Configuración de la aplicación (vacío)
+    ├── config/             Registro de módulos, navegación y métricas
     └── styles/
-        └── index.css       Tailwind y tokens de diseño provisionales
+        └── index.css       Tailwind y tokens de diseño
 ```
 
-Las carpetas de módulos, `shared`, `services` y `config` solo contienen un
-`README.md` breve que explica su función. No tienen código.
+Cada módulo contiene `index.ts` (su API pública), `pages/` (su página inicial)
+y, cuando los necesita, `components/` propios. `services` solo contiene un
+`README.md`: todavía no hay ningún servicio conectado.
 
 ### Previsto (se crea en su fase, no antes)
 
 | Ubicación                  | Contenido                                                      | Fase |
 | -------------------------- | -------------------------------------------------------------- | ---- |
-| `src/app/`                 | Enrutador, proveedores globales y estructura visual principal  | 2    |
-| `src/shared/components/`   | Sistema de componentes reutilizables                           | 2    |
-| `src/config/modules.ts`    | Registro único de los seis módulos (para navegación y permisos) | 2   |
 | `src/config/env.ts`        | Acceso tipado y validado a las variables de entorno            | 3    |
 | `supabase/`                | Migraciones de la base de datos y funciones de servidor        | 3    |
 | `src/admin/`               | Administración global (área transversal, no es un módulo)      | 11   |
 
 ## 4. Organización de módulos
 
-Cada módulo es autónomo. Cuando llegue su fase tendrá esta estructura interna:
+Cada módulo es autónomo. Hoy tiene `index.ts`, `pages/` y, en algún caso,
+`components/`. Al llegar su fase completará esta estructura interna:
 
 ```
 src/modules/<modulo>/
@@ -141,6 +152,8 @@ app  ──►  modules  ──►  shared, services, config
    queda en ese módulo.
 4. Ningún componente supera una responsabilidad: los componentes grandes se
    dividen y la lógica se extrae a `hooks/` o `domain/`.
+5. Dentro de un módulo se usan importaciones relativas. Hacia fuera, el alias
+   `@/`. El enrutador importa cada módulo solo por su `index.ts`.
 
 ## 5. Separación frontend / backend
 
@@ -204,35 +217,77 @@ necesidad concreta que lo anterior no resuelva.
 
 ## 8. Sistema de componentes y directrices visuales
 
-**Hoy:** `src/styles/index.css` define un conjunto mínimo y provisional de
-tokens con la sintaxis `@theme` de Tailwind 4.
+Construido en la Fase 2. Tema exclusivamente oscuro e interfaz solo en
+español, por decisión del propietario.
 
-| Token                               | Uso                                    |
-| ----------------------------------- | -------------------------------------- |
-| `ink-950`, `ink-900`                | Negro profundo: fondo de la aplicación |
-| `graphite-900` a `graphite-700`     | Grafito: tarjetas, paneles y barras    |
-| `accent`, `accent-strong`           | Verde esmeralda: acento                |
+### Tokens de diseño
 
-**Directrices para la Fase 2:**
+Definidos en `src/styles/index.css` con la sintaxis `@theme` de Tailwind 4.
 
-1. Modo oscuro predeterminado. Los tokens se diseñan primero para oscuro.
-2. Los componentes usan tokens, nunca colores escritos a mano.
-3. Primero se construyen las piezas base (botón, tarjeta, campo, etc.) en
-   `src/shared/components/` y las pantallas se componen con ellas.
-4. Diseño adaptable: primero móvil, después escritorio.
-5. Accesibilidad desde el inicio: contraste suficiente, foco visible,
-   navegación por teclado y HTML semántico.
-6. Microanimaciones con transiciones CSS. Se respeta la preferencia del
-   sistema de reducir el movimiento.
-7. Las fuentes se alojan con la propia aplicación; no se cargan desde
-   servidores de terceros, para no enviarles datos de quien la usa.
-8. Sin datos ficticios: mientras no haya datos reales, los widgets muestran
-   estados vacíos.
+| Token                                   | Uso                                                      |
+| --------------------------------------- | -------------------------------------------------------- |
+| `ink-950`, `ink-900`                    | Negro profundo: fondo de la aplicación y barra lateral   |
+| `graphite-900` a `graphite-500`         | Grafito: tarjetas, paneles y controles                   |
+| `line`, `line-strong`                   | Bordes discretos                                         |
+| `fg`, `fg-muted`, `fg-subtle`           | Texto: blanco suave y grises neutros                     |
+| `accent`, `accent-strong`               | Verde esmeralda: sección activa, estados y acciones      |
+| `shadow-panel`, `shadow-pop`            | Profundidad de superficies y de paneles flotantes        |
+| `animate-enter`, `-pop`, `-drawer`, `-fade` | Movimiento: entrada de página, paneles y menú móvil  |
+| `font-sans`                             | Tipografía Geist                                         |
+| `container-shell`                       | Ancho máximo del contenido                               |
 
-La paleta definitiva, la tipografía y las librerías de apoyo (primitivas
-accesibles, iconos, gráficos) se cierran en la Fase 2.
+### Componentes compartidos
+
+En `src/shared/components/`. Antes de crear uno nuevo se comprueba si ya
+existe aquí.
+
+| Componente                      | Función                                                        |
+| ------------------------------- | -------------------------------------------------------------- |
+| `Panel`                         | Superficie con título: el contenedor base                      |
+| `EmptyState`                    | Estado vacío que explica qué aparecerá en un espacio           |
+| `MetricCard`                    | Widget de una métrica; sin valor muestra su estado vacío       |
+| `ChartPlaceholder`              | Espacio reservado para un gráfico, sin ninguna serie de datos  |
+| `PageIntro`, `ModuleIntro`      | Cabecera de una página y de la página inicial de un módulo     |
+| `SectionHeading`                | Título de un bloque de contenido                               |
+| `Popover`                       | Panel flotante accesible anclado a un botón                    |
+| `IconButton`, `IconTile`        | Botón de icono e icono sobre superficie                        |
+| `Badge`, `Notice`               | Etiqueta de estado y nota informativa                          |
+| `Wordmark`                      | Identidad textual «DealHunter» (sin símbolo ni logotipo)       |
+
+Los componentes propios de una sola zona viven en ella: los del layout en
+`src/app/layout/`, los del dashboard en `src/app/dashboard/` y los de un
+módulo en su carpeta `components/`.
+
+### Directrices
+
+1. **Solo tema oscuro.** No existe ni se prepara un tema claro.
+2. **Tokens, no colores sueltos.** Ningún componente escribe un color a mano.
+3. **Verde esmeralda con moderación.** Se reserva para la sección activa, los
+   estados y lo que debe destacar.
+4. **Primero móvil.** La barra lateral es fija a partir de `lg` (1024 px); por
+   debajo se usa el menú móvil. Cuando un bloque depende de su propio ancho y
+   no del de la ventana, se usan consultas de contenedor. A partir de 1920 px
+   se aumenta el tamaño base de la tipografía para escalar toda la interfaz.
+5. **Accesibilidad.** HTML semántico, un único `h1` por página, foco visible,
+   navegación por teclado y enlace para saltar al contenido.
+6. **Movimiento sobrio.** Transiciones y animaciones CSS, sin librería. Se
+   respeta la preferencia del sistema de reducir el movimiento.
+7. **Tipografía propia.** Geist se sirve con la aplicación; no se cargan
+   fuentes desde servidores de terceros.
+8. **Sin datos ficticios.** Donde no hay datos reales se muestra un estado
+   vacío. Ningún gráfico, métrica o lista representa datos inventados.
+9. **Ningún control aparenta una función que no existe.** La búsqueda global,
+   las notificaciones y el perfil de la barra superior todavía no tienen
+   funcionalidad: cada uno abre un panel que explica su estado real.
+
+Queda por elegir la librería de gráficos. Se decidirá cuando existan datos
+que representar.
 
 ## 9. Gestión de errores
+
+**Hoy:** existe la barrera de errores de las secciones
+(`src/app/errors/RouteError.tsx`), que mantiene la navegación disponible si
+una sección falla, y la página de dirección inexistente.
 
 Previsto:
 
@@ -421,8 +476,8 @@ buscadores.
 - Vercel es la opción preferida. Antes de usarlo hay que comprobar si las
   condiciones de su plan gratuito admiten uso comercial; si no, se valorará su
   coste o una alternativa.
-- Cuando exista enrutador, el alojamiento deberá devolver `index.html` para
-  cualquier ruta de la aplicación.
+- La aplicación usa enrutador: el alojamiento deberá devolver `index.html`
+  para cualquier ruta. Se configura al desplegar, en la Fase 12.
 - Variables y secretos se configuran en el panel del proveedor, nunca en el
   repositorio.
 - La publicación se hace en la Fase 12, tras la auditoría de seguridad.
@@ -434,7 +489,13 @@ buscadores.
 - `npm run typecheck`: TypeScript en modo estricto.
 - `npm run lint`: oxlint con reglas de React y TypeScript.
 
-No hay pruebas automatizadas porque todavía no existe lógica que probar.
+No hay pruebas automatizadas en el repositorio porque todavía no existe
+lógica de negocio que probar.
+
+La interfaz de la Fase 2 se verificó en un navegador real con un guion de un
+solo uso (312 comprobaciones; resultado en `ROADMAP.md`). Ese guion no forma
+parte del repositorio: incorporarlo exige una dependencia de desarrollo nueva
+(ver `PROJECT_CONTEXT.md`, sección 11).
 
 **Previsto:**
 
@@ -447,8 +508,8 @@ No hay pruebas automatizadas porque todavía no existe lógica que probar.
 
 1. **Módulos aislados.** Las fronteras de la sección 4 permiten ampliar o
    reescribir un módulo sin afectar al resto.
-2. **Carga por módulo.** Cada módulo se cargará bajo demanda, para que la
-   aplicación no pese más al crecer.
+2. **Carga por módulo.** Cada módulo se carga bajo demanda
+   (`src/app/router.tsx`), para que la aplicación no pese más al crecer.
 3. **Base de datos.** Paginación e índices desde el diseño del esquema.
 4. **Multiorganización** (propuesta): permite pasar de herramienta interna a
    SaaS sin migrar los datos.
@@ -471,24 +532,32 @@ No hay pruebas automatizadas porque todavía no existe lógica que probar.
 | D-005 | Monolito modular con una carpeta por módulo oficial   | Mantenible y sin el coste operativo de los microservicios                                           |
 | D-006 | npm como gestor de paquetes                           | Viene con Node.js; no añade ninguna herramienta                                                     |
 | D-007 | Alias `@/` hacia `src/`, definido solo en `tsconfig.app.json` | Importaciones estables. Vite 8 lee el alias de TypeScript, así que no se duplica            |
-| D-008 | Documentación e interfaz en español; identificadores de código en inglés | El propietario trabaja en español; el inglés es el estándar en código. Revisable |
+| D-008 | Documentación e interfaz en español; identificadores de código en inglés | El propietario confirmó la interfaz solo en español; el inglés es el estándar en código |
+| D-009 | React Router como enrutador                           | Aprobado por el propietario. Dirección propia por sección, botón «atrás» y carga por módulo         |
+| D-010 | lucide-react para la iconografía                      | Aprobado por el propietario. Juego de iconos coherente; solo se incluyen los que se usan            |
+| D-011 | Tipografía Geist alojada con la aplicación            | Aprobada por el propietario. Aspecto idéntico en todos los dispositivos y sin peticiones a terceros |
+| D-012 | Tema exclusivamente oscuro y logotipo textual provisional | Decisión del propietario. No se prepara tema claro ni se inventa un símbolo                     |
+| D-013 | Los controles sin funcionalidad abren un panel que explica su estado | Cumple a la vez «incluir búsqueda, notificaciones y perfil» y «ningún botón que aparente una acción inexistente» |
+| D-014 | Menú móvil con `<dialog>` nativo y panel flotante propio, sin librería de primitivas | El navegador ya resuelve el foco y el cierre; evita una dependencia |
+| D-015 | Escala global en pantallas grandes subiendo el tamaño base | La interfaz está medida en rem: un solo ajuste la escala entera de forma proporcional          |
+| D-016 | La rama principal es `main`; nunca se fuerza un push  | Decisión del propietario. El historial de `main` se conserva íntegro                                |
 
 ### Propuestas (no instaladas; se confirman en su fase)
 
-Todas son gratuitas y de código abierto, salvo los servicios indicados.
+Cualquier librería o servicio nuevo requiere que el propietario lo apruebe
+antes de instalarlo o contratarlo. Las propuestas P-001 a P-003 de la Fase 1
+pasaron a ser las decisiones D-009 a D-011.
 
-| ID    | Propuesta                                                        | Fase | Requiere aprobación del propietario |
-| ----- | ---------------------------------------------------------------- | ---- | ----------------------------------- |
-| P-001 | React Router como enrutador                                      | 2    | No (decisión técnica)               |
-| P-002 | Librería de primitivas accesibles, de iconos y de gráficos       | 2    | No (decisión técnica); se informará de la elección |
-| P-003 | Fuente tipográfica alojada con la aplicación                     | 2    | Sí (es identidad visual)            |
-| P-004 | Supabase como backend, en región de la UE                        | 3    | Sí (servicio externo)               |
-| P-005 | Lógica de servidor en funciones de Supabase                      | 3    | Sí (servicio externo)               |
-| P-006 | Modelo de datos multiorganización                                | 3    | Sí (afecta al alcance futuro)       |
-| P-007 | TanStack Query para los datos del servidor                       | 3    | No (decisión técnica)               |
-| P-008 | Zod para validación                                              | 3    | No (decisión técnica)               |
-| P-009 | Vitest para pruebas unitarias                                    | 4    | No (decisión técnica)               |
-| P-010 | Vercel como alojamiento                                          | 12   | Sí (servicio externo; verificar condiciones) |
+| ID    | Propuesta                                              | Fase               | Tipo             |
+| ----- | ------------------------------------------------------ | ------------------ | ---------------- |
+| P-004 | Supabase como backend, en región de la UE              | 3                  | Servicio externo |
+| P-005 | Lógica de servidor en funciones de Supabase            | 3                  | Servicio externo |
+| P-006 | Modelo de datos multiorganización                      | 3                  | Alcance futuro   |
+| P-007 | TanStack Query para los datos del servidor             | 3                  | Librería gratuita |
+| P-008 | Zod para validación                                    | 3                  | Librería gratuita |
+| P-009 | Vitest para pruebas unitarias                          | 4                  | Librería gratuita |
+| P-010 | Vercel como alojamiento                                | 12                 | Servicio externo; verificar condiciones |
+| P-011 | Librería de gráficos                                   | Cuando haya datos  | Librería gratuita; por elegir |
 
 ## 22. Riesgos y dependencias
 

@@ -11,7 +11,7 @@ Una fase solo pasa a COMPLETADA cuando todos sus criterios se han comprobado.
 | Fase | Nombre                                 | Estado      |
 | ---- | -------------------------------------- | ----------- |
 | 1    | Arquitectura y preparación             | COMPLETADA  |
-| 2    | Diseño visual y estructura principal   | PENDIENTE   |
+| 2    | Diseño visual y estructura principal   | EN PROGRESO |
 | 3    | Base de datos y autenticación          | PENDIENTE   |
 | 4    | Lead Hunter                            | PENDIENTE   |
 | 5    | Business Intelligence                  | PENDIENTE   |
@@ -31,8 +31,8 @@ de ese alcance.
 
 ## Fase 1 · Arquitectura y preparación
 
-**Estado:** COMPLETADA. Criterios verificados el 2026-11-13. Queda pendiente
-que el propietario valide el resultado y autorice la Fase 2.
+**Estado:** COMPLETADA. Criterios verificados el 2026-11-13. El propietario
+dio la fase por buena y autorizó la Fase 2.
 
 **Objetivo.** Definición técnica, estructura inicial y documentación.
 
@@ -77,7 +77,8 @@ incluye la interfaz definitiva, ningún módulo, backend ni servicios externos.
 
 ## Fase 2 · Diseño visual y estructura principal
 
-**Estado:** PENDIENTE
+**Estado:** EN PROGRESO. Implementada y verificada técnicamente el
+2026-11-13. Solo falta el último criterio: la validación del propietario.
 
 **Objetivo.** Construcción de la interfaz general de DealHunter.
 
@@ -87,22 +88,61 @@ ningún módulo ni datos reales.
 
 **Tareas**
 
-- Cerrar los tokens de diseño: paleta, tipografía y espaciado.
-- Construir el sistema de componentes reutilizables.
-- Construir la barra lateral de navegación y la barra superior.
-- Construir la estructura del dashboard principal y sus widgets de métricas.
-- Preparar la búsqueda global, las notificaciones, el perfil de usuario y el
-  panel de actividad a nivel de interfaz.
-- Adaptar todas las vistas a escritorio y móvil.
+- [x] Cerrar los tokens de diseño: paleta, tipografía y movimiento.
+- [x] Construir el sistema de componentes reutilizables.
+- [x] Construir la barra lateral de navegación y la barra superior.
+- [x] Construir el dashboard principal: resumen de actividad, widgets de
+      métricas, accesos a los seis módulos y panel de actividad.
+- [x] Preparar la búsqueda global, las notificaciones y el perfil de usuario
+      a nivel de interfaz, sin funcionalidad.
+- [x] Crear la página inicial de cada uno de los seis módulos.
+- [x] Adaptar todas las vistas a móvil, tablet, portátil, escritorio y
+      pantallas grandes.
+- [x] Verificar y documentar el resultado.
 
 **Criterios de finalización**
 
-- La interfaz refleja la dirección artística aprobada.
-- La navegación da acceso a los seis módulos y a nada más.
-- Funciona correctamente en escritorio y móvil.
-- No aparece ningún dato ficticio: sin datos reales se muestran estados vacíos.
-- Ningún elemento de la interfaz tiene una función inventada.
-- El propietario valida el resultado.
+- [x] La interfaz refleja la dirección artística aprobada. Revisado sobre
+      capturas reales de todas las secciones: tema oscuro, negro profundo,
+      grafito y acento verde esmeralda.
+- [x] La navegación da acceso a los seis módulos y a nada más. Comprobado:
+      la barra lateral y el menú móvil contienen el dashboard y los seis
+      módulos, en su orden, y la sección activa queda marcada.
+- [x] Funciona correctamente en escritorio y móvil. Comprobado en cinco
+      anchos (390, 768, 1280, 1920 y 2560 px) para las siete secciones: sin
+      desbordamiento horizontal ni texto cortado.
+- [x] No aparece ningún dato ficticio. Comprobado: todas las métricas,
+      gráficos y listas muestran su estado vacío.
+- [x] Ningún elemento de la interfaz tiene una función inventada.
+      Comprobado: solo existen cinco botones, todos con comportamiento real
+      (abrir y cerrar el menú móvil y los tres paneles de la barra superior),
+      y ningún campo ni formulario.
+- [ ] El propietario valida el resultado.
+
+**Verificación técnica realizada (2026-11-13)**
+
+Sobre la compilación de producción, en un navegador real:
+
+| Comprobación                                                        | Resultado |
+| ------------------------------------------------------------------- | --------- |
+| `npm run typecheck`, `npm run lint` y `npm run build`               | Sin errores |
+| Las 7 secciones en 5 anchos: título, sección activa, pestaña        | 105 de 105 |
+| Sin desbordamiento horizontal ni texto cortado                      | 70 de 70 |
+| Sin errores ni avisos de consola                                    | 38 de 38 |
+| Tipografía Geist cargada desde la propia aplicación                 | 35 de 35 |
+| Navegación: barra lateral, accesos, botón «atrás», dirección inexistente | 18 de 18 |
+| Teclado: salto al contenido y foco visible                          | 3 de 3 |
+| Paneles de la barra superior, en escritorio y móvil                 | 30 de 30 |
+| Menú móvil: abrir, navegar y cerrar de cuatro formas                | 8 de 8 |
+| Alcance: solo los controles previstos; nada guardado en el navegador | 3 de 3 |
+| Sin peticiones a dominios externos                                  | 2 de 2 |
+| **Total**                                                           | **312 de 312** |
+
+**No incluido en esta fase**
+
+Base de datos, autenticación, usuarios, permisos, integraciones, búsqueda
+real, análisis, IA, generación de demostraciones, presupuestos, CRM,
+analítica, automatizaciones y administración global.
 
 ---
 
