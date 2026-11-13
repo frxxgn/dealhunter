@@ -28,6 +28,15 @@ más antigua. Las fechas usan el formato AAAA-MM-DD.
 - Decisiones técnicas D-001 a D-008, registradas en `ARCHITECTURE.md`,
   sección 21.
 
+### Verificado
+
+- Instalación desde cero en un clon limpio, comprobación de tipos, linter,
+  compilación, servidor de desarrollo y vista previa de la compilación.
+- La aplicación no hace peticiones a dominios externos y no se ha contratado
+  ni activado ningún servicio.
+- Fase 1 marcada como COMPLETADA en `ROADMAP.md`, con la comprobación de cada
+  criterio.
+
 ### No incluido
 
 - Ningún módulo, interfaz definitiva, backend, base de datos, autenticación,

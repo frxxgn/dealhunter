@@ -10,7 +10,7 @@ Una fase solo pasa a COMPLETADA cuando todos sus criterios se han comprobado.
 
 | Fase | Nombre                                 | Estado      |
 | ---- | -------------------------------------- | ----------- |
-| 1    | Arquitectura y preparación             | EN PROGRESO |
+| 1    | Arquitectura y preparación             | COMPLETADA  |
 | 2    | Diseño visual y estructura principal   | PENDIENTE   |
 | 3    | Base de datos y autenticación          | PENDIENTE   |
 | 4    | Lead Hunter                            | PENDIENTE   |
@@ -31,7 +31,8 @@ de ese alcance.
 
 ## Fase 1 · Arquitectura y preparación
 
-**Estado:** EN PROGRESO
+**Estado:** COMPLETADA. Criterios verificados el 2026-11-13. Queda pendiente
+que el propietario valide el resultado y autorice la Fase 2.
 
 **Objetivo.** Definición técnica, estructura inicial y documentación.
 
@@ -46,18 +47,31 @@ incluye la interfaz definitiva, ningún módulo, backend ni servicios externos.
 - [x] Configurar Tailwind CSS tras comprobar la compatibilidad de versiones.
 - [x] Crear la estructura de carpetas preparada para los seis módulos.
 - [x] Redactar los seis documentos obligatorios.
-- [ ] Verificar los criterios de finalización.
-- [ ] Actualizar el estado del proyecto con el resultado real.
+- [x] Verificar los criterios de finalización.
+- [x] Actualizar el estado del proyecto con el resultado real.
 
 **Criterios de finalización**
 
-- [ ] La estructura inicial es correcta y coincide con `ARCHITECTURE.md`.
-- [ ] Existen los seis documentos obligatorios.
-- [ ] No hay contradicciones entre los documentos.
-- [ ] Las dependencias elegidas son compatibles entre sí.
-- [ ] El proyecto se instala desde cero y se ejecuta.
-- [ ] No se han introducido servicios externos ni costes.
-- [ ] No se ha implementado ninguna funcionalidad fuera del alcance.
+- [x] La estructura inicial es correcta y coincide con `ARCHITECTURE.md`.
+      Comprobado: todos los archivos versionados figuran en su sección 3 y
+      hay exactamente seis carpetas de módulos.
+- [x] Existen los seis documentos obligatorios.
+- [x] No hay contradicciones entre los documentos. Comprobado: versiones,
+      estado de la fase, decisiones y referencias entre secciones. Se
+      corrigió una discrepancia sobre qué librerías requieren aprobación.
+- [x] Las dependencias elegidas son compatibles entre sí. Comprobado: sin
+      conflictos entre dependencias y sin vulnerabilidades conocidas en
+      `npm audit`.
+- [x] El proyecto se instala desde cero y se ejecuta. Comprobado en un clon
+      limpio: `npm install`, `npm run typecheck`, `npm run lint`,
+      `npm run build`, `npm run dev` y `npm run preview`, con la página
+      abierta en un navegador en ancho de escritorio y de móvil, sin errores.
+- [x] No se han introducido servicios externos ni costes. Comprobado: la
+      aplicación no hace ninguna petición a otros dominios y todas las
+      dependencias tienen licencia de código abierto.
+- [x] No se ha implementado ninguna funcionalidad fuera del alcance.
+      Comprobado: el único código es el arranque y una pantalla provisional
+      sin elementos interactivos.
 
 ---
 

@@ -16,7 +16,8 @@ Analytics.
 
 ## Estado del desarrollo
 
-**Fase 1 de 12 · Arquitectura y preparación.**
+**Fase 1 de 12 (Arquitectura y preparación): completada. La Fase 2 no ha
+empezado.**
 
 El repositorio contiene la base técnica y la documentación. **Todavía no hay
 ninguna funcionalidad implementada**: ni módulos, ni interfaz definitiva, ni

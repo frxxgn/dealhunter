@@ -186,12 +186,12 @@ verificar antes la base legal y contar con autorización.
 
 ## 4. Estado actual
 
-| Campo                     | Valor                                                                 |
-| ------------------------- | --------------------------------------------------------------------- |
-| Fase actual               | Fase 1 · Arquitectura y preparación                                   |
-| Estado de la fase         | EN PROGRESO                                                           |
-| Última tarea completada   | Estructura inicial y documentación redactadas (verificación en curso) |
-| Próxima tarea autorizada  | Verificar los criterios de finalización de la Fase 1                  |
+| Campo                    | Valor                                                                    |
+| ------------------------ | ------------------------------------------------------------------------ |
+| Fase actual              | Fase 1 · Arquitectura y preparación                                      |
+| Estado de la fase        | COMPLETADA. Criterios verificados el 2026-11-13 (detalle en `ROADMAP.md`) |
+| Última tarea completada  | Verificación de la Fase 1 y actualización de la documentación            |
+| Próxima tarea autorizada | **Ninguna.** La Fase 2 requiere autorización expresa del propietario     |
 
 ## 5. Arquitectura actual (resumen)
 
@@ -256,7 +256,7 @@ Ninguna bloquea la Fase 1. Cada una indica cuándo hace falta.
 | 2   | Idioma de la interfaz y si hará falta multiidioma                                                                  | Solo español al inicio                                                | Fase 2         |
 | 3   | ¿Habrá modo claro además del oscuro predeterminado?                                                                | Solo modo oscuro al inicio                                            | Fase 2         |
 | 4   | Logotipo y recursos de marca de DealHunter, si existen                                                             | Si no existen, usar el nombre en texto                                | Fase 2         |
-| 5   | Librerías gratuitas de código abierto para la Fase 2: enrutador, primitivas accesibles, iconos, gráficos, fuente   | Ver `ARCHITECTURE.md`, sección 21 (propuestas)                        | Fase 2         |
+| 5   | Tipografía de la interfaz (forma parte de la identidad visual)                                                     | Se propondrán opciones en la Fase 2, alojadas con la propia aplicación | Fase 2         |
 | 6   | Confirmar Supabase como backend, su plan y región                                                                  | Supabase, plan gratuito, región de la UE; la cuenta la crea el propietario | Fase 3    |
 | 7   | Dónde se ejecuta la lógica de servidor                                                                             | Funciones de Supabase (alternativa: funciones de Vercel)              | Fase 3         |
 | 8   | Modelo de datos multiorganización desde el inicio, para la futura evolución a SaaS                                 | Sí: evita migrar todos los datos más adelante                         | Fase 3         |
