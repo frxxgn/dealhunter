@@ -98,6 +98,14 @@ Tokens y componentes disponibles: `ARCHITECTURE.md`, sección 8.
 11. **Interfaz honesta.** Sin datos ficticios: donde no hay datos reales se
     muestra un estado vacío. Ningún control aparenta una función que no
     existe.
+12. **Funcionalidad antes que estética.** La prioridad es que DealHunter
+    encuentre negocios reales. La interfaz actual es una estructura
+    provisional: no se reconstruye ni se pule. Solo se hacen los cambios
+    visuales imprescindibles para usar una funcionalidad. El acabado visual
+    tiene su propia fase, al final.
+13. **Datos con procedencia.** Cada dato de un negocio guarda su fuente y se
+    distingue entre verificado, no encontrado y estimado. Nunca se afirma que
+    un negocio no tiene web si no se ha podido comprobar.
 
 ## Restricciones
 

@@ -23,6 +23,53 @@ Una fase solo pasa a COMPLETADA cuando todos sus criterios se han comprobado.
 | 11   | Administración global                  | PENDIENTE   |
 | 12   | Seguridad, pruebas y despliegue        | PENDIENTE   |
 
+## PROPUESTA DE REORGANIZACIÓN · PENDIENTE DE APROBACIÓN
+
+> Documentada el 2026-11-13 a petición del propietario. **Todavía no es el
+> roadmap oficial:** las fases de este documento no cambian hasta que el
+> propietario la apruebe.
+
+**Motivo.** El propietario ha decidido priorizar la funcionalidad real sobre
+la estética (`PROJECT_CONTEXT.md`, apartado 3.6).
+
+| N.º | Fase propuesta                                        | Cambio respecto al roadmap actual                                              |
+| --- | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
+| 1   | Arquitectura y preparación                            | Ninguno. COMPLETADA                                                            |
+| 2   | Estructura visual provisional                         | Se cierra tal como está. Su acabado pasa a la fase 13                          |
+| 3   | Infraestructura mínima                                | Sustituye a «Base de datos y autenticación». Solo lo que Lead Hunter necesita  |
+| 4   | Lead Hunter                                           | Mismo lugar. Alcance ampliado. En dos etapas (ver ajuste 1)                    |
+| 5   | Business Intelligence                                 | Mismo lugar                                                                    |
+| 6   | Sales Command                                         | Mismo lugar                                                                    |
+| 7   | Proposal Engine                                       | Mismo lugar                                                                    |
+| 8   | Demo Factory                                          | Mismo lugar                                                                    |
+| 9   | Revenue Analytics                                     | Mismo lugar                                                                    |
+| 10  | Automatizaciones                                      | Mismo lugar                                                                    |
+| 11  | Administración global                                 | Mismo lugar. Asume los roles y permisos completos                              |
+| 12  | Seguridad, pruebas y despliegue                       | Queda como auditoría y publicación finales (ver ajustes 2 y 3)                 |
+| 13  | Identidad visual definitiva y optimización de experiencia | Nueva. Recoge todo el acabado visual aplazado                              |
+
+El orden pedido por el propietario coincide con el del roadmap actual desde
+la fase 3. Los cambios reales son tres: cerrar la fase 2 como provisional,
+reducir la fase 3 a lo imprescindible y añadir la fase 13.
+
+**Ajustes técnicos que la propuesta incorpora**
+
+1. **Lead Hunter en dos etapas.** Detectar webs antiguas o con problemas de
+   móvil, rendimiento o SEO exige el motor de análisis, que pertenece a
+   Business Intelligence. Etapa 4A: búsqueda, datos, detección de negocios
+   sin web conocida, guardado, filtros, duplicados e historial. Etapa 4B:
+   esas cuatro señales, en cuanto exista el motor de la fase 5.
+2. **Seguridad mínima desde la fase 3.** Acceso privado, secretos en el
+   servidor y permisos en la base de datos no pueden esperar a la fase 12: en
+   cuanto haya datos de contacto reales deben estar protegidos.
+3. **Uso real antes de la fase 12.** Para que el propietario pueda usar Lead
+   Hunter hay que decidir pronto dónde se ejecuta: en un ordenador o
+   publicada de forma privada.
+4. **Límites y registro de consumo con la primera integración**, no en la
+   fase de administración.
+
+---
+
 El alcance funcional de cada módulo está en `PROJECT_CONTEXT.md`, sección 2.
 Las tareas de las fases 2 a 12 se detallarán al comenzar cada una, sin salirse
 de ese alcance.

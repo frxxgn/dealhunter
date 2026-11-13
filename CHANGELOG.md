@@ -3,6 +3,22 @@
 Registra las modificaciones importantes del proyecto, de la más reciente a la
 más antigua. Las fechas usan el formato AAAA-MM-DD.
 
+## [Sin publicar]
+
+### Cambio de prioridades (2026-11-13)
+
+- El propietario prioriza la funcionalidad real (Lead Hunter y Business
+  Intelligence) sobre la identidad visual, que queda aplazada. Registrado en
+  `PROJECT_CONTEXT.md`, apartado 3.6.
+- Alcance de Lead Hunter detallado por el propietario (`PROJECT_CONTEXT.md`,
+  sección 2).
+- Propuesta de reorganización del roadmap, pendiente de aprobación
+  (`ROADMAP.md`). El roadmap oficial no ha cambiado.
+- Análisis de la infraestructura mínima y de las fuentes de datos, con sus
+  costes y condiciones de uso (`ARCHITECTURE.md`, secciones 5, 14 y 18).
+- Nuevas reglas permanentes 12 y 13 en `CLAUDE.md`.
+- No se ha escrito código ni se ha conectado ningún servicio.
+
 ## [0.2.0] - 2026-11-13 · Fase 2: Diseño visual y estructura principal
 
 ### Añadido

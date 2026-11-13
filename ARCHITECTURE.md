@@ -3,7 +3,7 @@
 > Fuente de verdad de las decisiones técnicas. Cada apartado distingue lo que
 > **existe hoy** de lo que está **previsto** para una fase posterior.
 >
-> Última actualización: 2026-11-13 (Fase 2).
+> Última actualización: 2026-11-13 (análisis previo a Lead Hunter).
 
 ## 1. Principios
 
@@ -53,7 +53,7 @@ Verificado con Node.js 22.23.4 y npm 10.9.9.
 | Tecnología | Uso previsto                                   | Fase | Estado                        |
 | ---------- | ---------------------------------------------- | ---- | ----------------------------- |
 | Supabase   | Autenticación, base de datos y almacenamiento  | 3    | Candidata; pendiente de confirmar |
-| Vercel     | Alojamiento del frontend                       | 12   | Opción; pendiente de verificar condiciones |
+| Vercel     | Alojamiento del frontend                       | 12   | En duda: su plan gratuito no admite uso comercial (sección 18) |
 
 Las librerías propuestas para fases posteriores están en la sección 21.
 
@@ -174,6 +174,28 @@ app  ──►  modules  ──►  shared, services, config
   gestionarán como trabajos registrados en la base de datos y procesados en
   segundo plano. El mecanismo concreto se decide en la Fase 4 o 5, cuando se
   conozcan los tiempos reales.
+
+### Infraestructura mínima que necesita Lead Hunter
+
+Análisis del 2026-11-13. **Propuesta pendiente de aprobación**; nada de esto
+está instalado ni contratado.
+
+| Pieza                         | ¿Hace falta? | Por qué                                                                                   | Propuesta                                        |
+| ----------------------------- | ------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Backend (funciones de servidor) | Sí         | El navegador no puede guardar claves ni consultar webs de terceros; ahí corren búsquedas, importaciones y comprobaciones | Funciones de Supabase            |
+| Base de datos                 | Sí           | Guardar negocios, la fuente de cada dato, el historial de búsquedas, los duplicados y el consumo | PostgreSQL de Supabase                    |
+| Autenticación                 | Sí, mínima   | La base tendrá datos de contacto y la aplicación será accesible por internet              | Un único usuario privado, sin registro público   |
+| Almacenamiento de archivos    | No           | Lead Hunter no maneja archivos                                                            | Se aplaza                                        |
+| Fuentes de datos              | Sí           | Sin ellas no hay búsqueda real                                                            | Ver sección 14                                   |
+| Protección de credenciales    | Sí           | Las claves solo pueden vivir en el servidor                                               | Secretos de las funciones de servidor            |
+| Gestión de errores            | Sí           | Las fuentes externas fallan o tardan                                                      | Errores tipados y mensajes claros (sección 9)    |
+| Límites de uso y costes       | Sí           | Evitar consumo no previsto                                                                | Registro de consumo y topes por fuente (sección 15) |
+
+Plan gratuito de Supabase (cifras de su página de precios, a confirmar al
+crear la cuenta): 500 MB de base de datos, 2 proyectos activos, 1 GB de
+archivos, 500.000 ejecuciones de funciones al mes. **Un proyecto gratuito se
+pausa tras una semana sin actividad** y hay que reactivarlo a mano. El plan
+de pago cuesta desde 25 $ al mes.
 
 No se usa Next.js: la aplicación es interna y requiere inicio de sesión, por
 lo que no necesita renderizado en servidor ni posicionamiento en buscadores.
@@ -383,7 +405,46 @@ Previsto para la Fase 3. **Todavía no hay ninguna tabla definida.**
 | Modelos de IA                                         | Los que lo justifiquen       | 5 a 8   | Por decidir; solo donde aporte valor real             |
 | Generación de documentos                              | Proposal Engine              | 7       | Por decidir; preferible una librería local sin servicio externo |
 | Publicación de demostraciones privadas                | Demo Factory                 | 8       | Por decidir                                           |
-| Alojamiento del frontend                              | Transversal                  | 12      | Vercel (opción)                                       |
+| Alojamiento del frontend                              | Transversal                  | 12      | Por decidir (ver sección 18)                          |
+
+### Fuentes de datos evaluadas (2026-11-13)
+
+**Propuesta pendiente de aprobación.** Cifras tomadas de la documentación de
+cada proveedor mediante búsqueda; hay que confirmarlas en su página oficial
+antes de contratar nada. Las marcadas con (*) proceden de terceros.
+
+| Fuente                                   | Coste                                                                 | Qué ofrece                                                                                     | Limitaciones y condiciones de uso                                                                                                   | Valoración                          |
+| ---------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| OpenStreetMap (API Overpass)             | Gratis                                                                | Nombre, dirección, tipo de negocio y, cuando alguien los ha cartografiado, web, teléfono, correo y redes | Cobertura desigual en negocios pequeños. Servidores públicos: orientación de menos de 10.000 consultas y 1 GB al día, y mucho menos para uso regular; el uso intensivo exige servidor propio. Licencia ODbL: atribución; la obligación de compartir solo nace si la base derivada se usa públicamente | Recomendada: búsqueda en vivo       |
+| Overture Maps (lugares)                  | Gratis                                                                | Unos 88 millones de lugares en el mundo (Meta, Microsoft, Foursquare y otros): nombre, categoría, dirección, webs, redes, correos, teléfonos, nivel de confianza y procedencia de cada registro | No tiene API: publica archivos mensuales que hay que importar por zonas. Calidad variable. Licencias CDLA Permissive 2.0 y Apache 2.0 según el origen: permiten uso comercial y almacenamiento, con atribución | Recomendada: amplía la cobertura y aporta redes sociales |
+| Google Places API (New)                  | Con web y teléfono: 1.000 búsquedas gratis al mes y después 35 $ por cada 1.000. Sin ellos: 5.000 gratis y después 32 $ por cada 1.000 | La mejor cobertura y actualidad                                    | Sus políticas solo permiten guardar el identificador del lugar; prohíben copiar y guardar nombres y direcciones. Hasta 60 resultados por búsqueda (*). Exige cuenta de facturación | No válida como base: incompatible con guardar negocios |
+| Foursquare Places API                    | 500 llamadas gratis al mes (*) y después 15 $ por cada 1.000 (*)      | Datos similares a su conjunto abierto                                                          | Cara para volumen. Su conjunto de datos abierto ya forma parte de Overture                                                          | No recomendada                      |
+| Extracción automática de Google Maps o de directorios, propia o mediante servicios de terceros | Variable                        | —                                                                                              | La prohíben las condiciones de uso de esas webs                                                                                     | Descartada                          |
+| Registros oficiales de empresas          | —                                                                     | Datos societarios                                                                              | No informan de webs ni de presencia digital                                                                                         | No útil para este fin               |
+| PageSpeed Insights API (Google)          | Gratis                                                                | Rendimiento, experiencia móvil, SEO básico y accesibilidad de una web                          | Unas 25.000 consultas al día por proyecto (*). Requiere una clave de Google Cloud                                                   | Recomendada para Business Intelligence |
+| Comprobación propia de cada web          | Gratis                                                                | Si la web responde, si usa HTTPS y sus etiquetas básicas                                        | Se hace desde el servidor, con moderación                                                                                           | Recomendada                         |
+
+**Consecuencias para el diseño**
+
+- Ninguna fuente abierta permite afirmar que un negocio no tiene web: solo
+  que no consta en esa fuente. Lead Hunter distinguirá tres estados: web
+  verificada (consta y responde), web no encontrada en las fuentes, y sin web
+  confirmado por una comprobación expresa.
+- Cada dato guarda su fuente y su fecha. Los registros de OpenStreetMap se
+  mantienen identificados, porque su licencia es distinta de la de Overture.
+- El correo y las redes solo se muestran cuando la fuente los incluye.
+- Antes de comprometerse con una fuente conviene una prueba de cobertura, sin
+  coste, en la zona y los sectores que indique el propietario.
+
+Fuentes consultadas: [precios de Google Maps Platform](https://developers.google.com/maps/billing-and-pricing/pricing),
+[políticas de Places API](https://developers.google.com/maps/documentation/places/web-service/policies),
+[guía de lugares de Overture](https://docs.overturemaps.org/guides/places/),
+[atribución de Overture](https://docs.overturemaps.org/attribution/),
+[preguntas legales de OpenStreetMap](https://osmfoundation.org/wiki/Licence/Licence_and_Legal_FAQ),
+[API Overpass](https://wiki.openstreetmap.org/wiki/Overpass_API),
+[esquema de datos abiertos de Foursquare](https://docs.foursquare.com/data-products/docs/places-os-data-schema),
+[precios de Supabase](https://supabase.com/pricing) y
+[condiciones de uso razonable de Vercel](https://vercel.com/docs/limits/fair-use-guidelines).
 
 ## 15. Control de costes
 
@@ -473,14 +534,18 @@ buscadores.
 
 - El frontend se compila a archivos estáticos (`npm run build` genera `dist/`)
   y puede alojarse en cualquier servicio de alojamiento estático.
-- Vercel es la opción preferida. Antes de usarlo hay que comprobar si las
-  condiciones de su plan gratuito admiten uso comercial; si no, se valorará su
-  coste o una alternativa.
+- Vercel era la opción inicial, pero su plan gratuito está restringido a uso
+  personal no comercial y una herramienta interna de empresa no encaja; su
+  plan de pago tiene coste mensual. Alternativa a valorar: un alojamiento
+  estático gratuito que admita uso comercial, como Cloudflare Pages (dato de
+  terceros, a confirmar). La decisión está pendiente.
 - La aplicación usa enrutador: el alojamiento deberá devolver `index.html`
   para cualquier ruta. Se configura al desplegar, en la Fase 12.
 - Variables y secretos se configuran en el panel del proveedor, nunca en el
   repositorio.
-- La publicación se hace en la Fase 12, tras la auditoría de seguridad.
+- La publicación definitiva se hace tras la auditoría de seguridad. Para poder
+  usar Lead Hunter antes, se propone una publicación privada temprana
+  (`ROADMAP.md`, propuesta de reorganización).
 
 ## 19. Pruebas y calidad
 
@@ -556,7 +621,7 @@ pasaron a ser las decisiones D-009 a D-011.
 | P-007 | TanStack Query para los datos del servidor             | 3                  | Librería gratuita |
 | P-008 | Zod para validación                                    | 3                  | Librería gratuita |
 | P-009 | Vitest para pruebas unitarias                          | 4                  | Librería gratuita |
-| P-010 | Vercel como alojamiento                                | 12                 | Servicio externo; verificar condiciones |
+| P-010 | Alojamiento del frontend: Vercel de pago o alternativa gratuita | Por decidir | Servicio externo (sección 18) |
 | P-011 | Librería de gráficos                                   | Cuando haya datos  | Librería gratuita; por elegir |
 
 ## 22. Riesgos y dependencias

@@ -42,18 +42,40 @@ La plataforma tiene **exactamente seis** módulos funcionales. No se añaden má
 
 ### Módulo A · Lead Hunter (Fase 4)
 
-Sistema de búsqueda y descubrimiento de negocios.
+Sistema de búsqueda y descubrimiento de negocios. Es el primer módulo
+prioritario (apartado 3.6). Alcance detallado y confirmado por el propietario
+el 2026-11-13.
 
-- Buscar negocios por localidad, provincia, país y sector.
-- Descubrir empresas mediante fuentes legítimas.
-- Obtener nombre comercial, dirección, página web, teléfono, correo
-  empresarial público y redes sociales cuando estén disponibles.
-- Detectar negocios que no tengan página web.
-- Detectar páginas web antiguas, deficientes o con oportunidades de mejora.
-- Identificar posibles necesidades comerciales.
-- Eliminar registros duplicados.
-- Aplicar filtros avanzados.
-- Guardar búsquedas.
+**Criterios de búsqueda:** país, provincia, ciudad o localidad, sector
+empresarial y tipo de negocio.
+
+**Datos que recupera, cuando la fuente lo permite:** nombre comercial,
+dirección empresarial, página web, teléfono público, correo empresarial
+público, redes sociales, sector y fuente de procedencia de la información.
+
+**Oportunidades que identifica:**
+
+- Negocios que no tienen página web.
+- Negocios con páginas web antiguas.
+- Negocios con problemas de experiencia móvil.
+- Negocios con problemas de rendimiento.
+- Negocios con oportunidades de mejora SEO.
+- Negocios cuya presencia digital parece insuficiente.
+- Posibles necesidades comerciales.
+
+**Gestión de resultados:** consultar los negocios encontrados, filtrarlos
+(filtros avanzados), ordenarlos, eliminar duplicados, guardar negocios,
+consultar su información, conocer la fuente de cada dato, guardar búsquedas y
+conservar el historial de búsquedas.
+
+**Condiciones:**
+
+- Solo fuentes legítimas.
+- No se afirma que una empresa carece de página web si la búsqueda no permite
+  comprobarlo.
+- Se diferencia siempre entre información verificada, información no
+  encontrada y estimaciones.
+- No se simulan búsquedas reales con datos inventados.
 
 ### Módulo B · Business Intelligence (Fase 5)
 
@@ -71,7 +93,9 @@ Sistema de análisis e inteligencia comercial.
 - Calcular una puntuación de oportunidad entre 0 y 100.
 - Explicar los factores que justifican cada puntuación.
 
-**Condición:** las estimaciones nunca se presentan como datos verificados.
+**Condiciones:** las estimaciones nunca se presentan como datos verificados.
+La puntuación usa criterios transparentes y datos disponibles. No se inventan
+resultados de análisis.
 
 ### Módulo C · Demo Factory (Fase 8)
 
@@ -206,14 +230,51 @@ uso de las fuentes, la legislación y las limitaciones de acceso. No se
 implementa scraping prohibido ni comunicaciones comerciales automáticas sin
 verificar antes la base legal y contar con autorización.
 
+### 3.6 Prioridades de desarrollo (decisión del propietario, 2026-11-13)
+
+**La prioridad absoluta es la funcionalidad real** que permita encontrar
+negocios y conseguir oportunidades comerciales para WebNovalius, antes de
+invertir más tiempo en la identidad visual.
+
+1. Infraestructura mínima necesaria para que las funcionalidades trabajen.
+2. Lead Hunter: búsqueda real de negocios.
+3. Recopilación y organización de información empresarial pública.
+4. Detección de negocios sin página web.
+5. Identificación de negocios con páginas web deficientes.
+6. Business Intelligence: análisis de oportunidades comerciales.
+7. Sistema de puntuación de oportunidades.
+8. Guardado, filtrado y organización de los negocios encontrados.
+
+Sobre la interfaz:
+
+- La interfaz actual se mantiene como **estructura provisional**. No se
+  reconstruye.
+- Quedan aplazados: logotipo definitivo, identidad visual definitiva,
+  animaciones, efectos, rediseños de tarjetas, transiciones y elementos
+  decorativos.
+- Solo se hacen los cambios visuales estrictamente necesarios para usar las
+  funcionalidades.
+- Se mantienen el tema oscuro, el verde esmeralda y el nombre provisional
+  DealHunter.
+
+Sobre servicios y costes:
+
+- No se instala ni contrata ningún servicio externo sin aprobación.
+- No se asume que las búsquedas puedan hacerse gratis: antes de usar una API,
+  proveedor o servicio de pago se presentan las opciones y se espera
+  autorización.
+
+Los seis módulos oficiales no cambian. El cambio afecta al orden de
+desarrollo, no a la identidad ni a los objetivos del producto.
+
 ## 4. Estado actual
 
 | Campo                    | Valor                                                                                         |
 | ------------------------ | --------------------------------------------------------------------------------------------- |
-| Fase actual              | Fase 2 · Diseño visual y estructura principal                                                 |
-| Estado de la fase        | EN PROGRESO. Implementada y verificada técnicamente el 2026-11-13; falta la validación del propietario |
-| Última tarea completada  | Interfaz principal construida, verificada, documentada y subida a `main`                      |
-| Próxima tarea autorizada | **Ninguna.** Pendiente de que el propietario valide la Fase 2. La Fase 3 requiere autorización expresa |
+| Fase actual              | Transición. Fase 2 aceptada por el propietario como estructura provisional; roadmap en reorganización |
+| Estado                   | Fase 2: su cierre formal como «provisional» está pendiente de confirmar. Nuevo orden de desarrollo: PROPUESTO, pendiente de aprobación (`ROADMAP.md`) |
+| Última tarea completada  | Análisis de infraestructura y de fuentes de datos para Lead Hunter, y propuesta de reorganización del roadmap (2026-11-13) |
+| Próxima tarea autorizada | **Ninguna.** No se programa nada hasta que el propietario apruebe las decisiones de la sección 10 |
 
 Fases anteriores: Fase 1 COMPLETADA (2026-11-13).
 
@@ -329,20 +390,26 @@ Componentes y archivos creados: `CHANGELOG.md`, versión 0.2.0.
 
 ## 10. Decisiones pendientes de aprobación del propietario
 
-| N.º | Decisión                                                                               | Recomendación                                                              | Necesaria para        |
-| --- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | --------------------- |
-| 1   | Validar el resultado visual de la Fase 2                                               | Revisar la aplicación o sus capturas                                       | Cerrar la Fase 2      |
-| 2   | Confirmar Supabase como backend, su plan y región                                      | Supabase, plan gratuito, región de la UE; la cuenta la crea el propietario | Fase 3                |
-| 3   | Dónde se ejecuta la lógica de servidor                                                 | Funciones de Supabase (alternativa: funciones de Vercel)                   | Fase 3                |
-| 4   | Modelo de datos multiorganización desde el inicio, para la futura evolución a SaaS     | Sí: evita migrar todos los datos más adelante                              | Fase 3                |
-| 5   | Roles de usuario y permisos de cada uno                                                | A definir con el propietario; no se inventan roles                         | Fase 3                |
-| 6   | Fuentes de datos de negocios y su coste                                                | Evaluar fuentes legítimas y su coste antes de elegir                       | Fase 4                |
-| 7   | Catálogo de automatizaciones                                                           | Lo define y aprueba el propietario                                         | Fase 10               |
-| 8   | Alojamiento del frontend: comprobar si el plan gratuito de Vercel admite uso comercial | Verificar condiciones antes de desplegar                                   | Fase 12               |
+El análisis que las sustenta está en `ARCHITECTURE.md`, secciones 5 y 14.
 
-Resueltas por el propietario en la Fase 2: rama principal (`main`), idioma
-(solo español), tema (solo oscuro), logotipo (texto provisional) y tipografía
-(Geist).
+| N.º | Decisión                                                                                   | Recomendación                                                                         | Necesaria para        |
+| --- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | --------------------- |
+| 1   | Cerrar la Fase 2 como «estructura provisional» y llevar el acabado visual a una fase final | Sí                                                                                    | Reorganizar el roadmap |
+| 2   | Aprobar el nuevo orden del roadmap (propuesta en `ROADMAP.md`)                             | Sí, con los ajustes técnicos que incluye                                              | Empezar la infraestructura |
+| 3   | Backend: Supabase, plan gratuito, región de la UE                                          | Sí. La cuenta y el proyecto los crea el propietario                                   | Infraestructura       |
+| 4   | Acceso: un único usuario privado al inicio; roles y permisos completos más adelante        | Sí                                                                                    | Infraestructura       |
+| 5   | Fuentes de datos de Lead Hunter                                                            | OpenStreetMap y Overture Maps (sin coste). Google Places no como base de datos        | Lead Hunter           |
+| 6   | Mercado objetivo: países, provincias y sectores prioritarios                               | Lo define el propietario; con ello se hace una prueba de cobertura sin coste          | Lead Hunter           |
+| 7   | Dónde se usa la aplicación: solo en un ordenador o publicada de forma privada              | Publicación privada temprana en un alojamiento gratuito que admita uso comercial      | Usar Lead Hunter      |
+| 8   | Análisis de webs con la API PageSpeed Insights de Google                                   | Sí. Es gratuita; la clave la crea el propietario                                      | Business Intelligence |
+| 9   | Librerías gratuitas: cliente de Supabase, Zod, TanStack Query y Vitest                     | Aprobarlas; se instalan cuando se necesiten                                           | Infraestructura       |
+| 10  | Modelo de datos multiorganización, para la futura evolución a SaaS                         | Sí: evita migrar todos los datos más adelante                                         | Infraestructura       |
+| 11  | Verificación legal del uso de los datos de contacto (RGPD y LSSI)                          | Hacerla antes de usar los datos para contactar con negocios                           | Antes de contactar    |
+| 12  | Catálogo de automatizaciones                                                               | Lo define y aprueba el propietario                                                    | Fase de automatizaciones |
+
+Resueltas por el propietario: rama principal (`main`), idioma (solo español),
+tema (solo oscuro), logotipo (texto provisional), tipografía (Geist) y
+prioridad de la funcionalidad sobre la estética (apartado 3.6).
 
 ## 11. MEJORAS PENDIENTES DE APROBACIÓN
 
@@ -374,11 +441,13 @@ No hay ninguna mejora funcional propuesta.
 
 ## 13. Información necesaria para continuar
 
-1. Que el propietario valide la Fase 2 (decisión pendiente n.º 1).
-2. Autorización expresa del propietario para iniciar la Fase 3.
-3. Para la Fase 3: respuesta a las decisiones n.º 2 a 5 y, si se confirma
-   Supabase, que el propietario cree la cuenta y el proyecto. Claude no
-   registra ni contrata servicios.
+1. Respuesta del propietario a las decisiones de la sección 10. Las n.º 1 a 6
+   bastan para empezar la infraestructura y Lead Hunter.
+2. Si se confirma Supabase: que el propietario cree la cuenta y el proyecto.
+   Claude no registra ni contrata servicios.
+3. Las sesiones de Claude en la nube tienen la red limitada: para probar las
+   fuentes de datos habrá que permitir sus dominios en la configuración del
+   entorno.
 
 Repositorio: la rama principal es `main`. El propietario autorizó el
 2026-11-13 subir el trabajo directamente a `main`, siempre sin forzar.
