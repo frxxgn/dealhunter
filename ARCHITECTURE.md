@@ -52,8 +52,8 @@ Verificado con Node.js 22.23.4 y npm 10.9.9.
 
 | Tecnología | Uso previsto                                   | Fase | Estado                        |
 | ---------- | ---------------------------------------------- | ---- | ----------------------------- |
-| Supabase   | Autenticación, base de datos y almacenamiento  | 3    | Candidata; pendiente de confirmar |
-| Vercel     | Alojamiento del frontend                       | 12   | En duda: su plan gratuito no admite uso comercial (sección 18) |
+| Supabase   | Base de datos, acceso privado y funciones de servidor | 3 | Aprobada (plan gratuito, región UE). La cuenta la crea el propietario |
+| Alojamiento | Publicación privada de la aplicación          | 3    | Por decidir. Cloudflare Pages en evaluación (sección 18) |
 
 Las librerías propuestas para fases posteriores están en la sección 21.
 
@@ -177,8 +177,9 @@ app  ──►  modules  ──►  shared, services, config
 
 ### Infraestructura mínima que necesita Lead Hunter
 
-Análisis del 2026-11-13. **Propuesta pendiente de aprobación**; nada de esto
-está instalado ni contratado.
+Análisis del 2026-11-13, **aprobado por el propietario** ese mismo día:
+Supabase, plan gratuito, región de la UE. Nada está instalado ni contratado
+todavía: la cuenta y el proyecto los crea el propietario.
 
 | Pieza                         | ¿Hace falta? | Por qué                                                                                   | Propuesta                                        |
 | ----------------------------- | ------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------ |
@@ -409,7 +410,8 @@ Previsto para la Fase 3. **Todavía no hay ninguna tabla definida.**
 
 ### Fuentes de datos evaluadas (2026-11-13)
 
-**Propuesta pendiente de aprobación.** Cifras tomadas de la documentación de
+**Decisión del propietario (2026-11-13):** se usan OpenStreetMap y Overture
+Maps. Google Places no se utiliza como base. Cifras tomadas de la documentación de
 cada proveedor mediante búsqueda; hay que confirmarlas en su página oficial
 antes de contratar nada. Las marcadas con (*) proceden de terceros.
 
@@ -543,9 +545,10 @@ buscadores.
   para cualquier ruta. Se configura al desplegar, en la Fase 12.
 - Variables y secretos se configuran en el panel del proveedor, nunca en el
   repositorio.
-- La publicación definitiva se hace tras la auditoría de seguridad. Para poder
-  usar Lead Hunter antes, se propone una publicación privada temprana
-  (`ROADMAP.md`, propuesta de reorganización).
+- **Decisión del propietario (2026-11-13):** la aplicación será privada y
+  accesible desde distintos dispositivos. No se publica hasta que la
+  autenticación, los permisos y la seguridad estén preparados (Fase 3).
+- La publicación definitiva se hace tras la auditoría de seguridad (Fase 12).
 
 ## 19. Pruebas y calidad
 
@@ -606,6 +609,11 @@ parte del repositorio: incorporarlo exige una dependencia de desarrollo nueva
 | D-014 | Menú móvil con `<dialog>` nativo y panel flotante propio, sin librería de primitivas | El navegador ya resuelve el foco y el cierre; evita una dependencia |
 | D-015 | Escala global en pantallas grandes subiendo el tamaño base | La interfaz está medida en rem: un solo ajuste la escala entera de forma proporcional          |
 | D-016 | La rama principal es `main`; nunca se fuerza un push  | Decisión del propietario. El historial de `main` se conserva íntegro                                |
+| D-017 | Backend en Supabase: base de datos, acceso privado y funciones de servidor. Plan gratuito, región de la UE | Aprobado por el propietario. Sin planes de pago; la cuenta la crea el propietario |
+| D-018 | Fuentes de Lead Hunter: OpenStreetMap y Overture Maps | Aprobadas por el propietario. Son gratuitas y permiten guardar los datos. Google Places no se usa como base |
+| D-019 | Aplicación privada; no se publica hasta tener autenticación, permisos y seguridad | Decisión del propietario. La base contendrá datos de contacto                  |
+| D-020 | Supabase JS, Zod, TanStack Query y Vitest             | Aprobadas por el propietario. Se instalan solo cuando su fase las necesite                          |
+| D-021 | Roadmap de 13 fases: funcionalidad antes que estética | Decisión del propietario (`ROADMAP.md`)                                                             |
 
 ### Propuestas (no instaladas; se confirman en su fase)
 
@@ -615,14 +623,13 @@ pasaron a ser las decisiones D-009 a D-011.
 
 | ID    | Propuesta                                              | Fase               | Tipo             |
 | ----- | ------------------------------------------------------ | ------------------ | ---------------- |
-| P-004 | Supabase como backend, en región de la UE              | 3                  | Servicio externo |
-| P-005 | Lógica de servidor en funciones de Supabase            | 3                  | Servicio externo |
 | P-006 | Modelo de datos multiorganización                      | 3                  | Alcance futuro   |
-| P-007 | TanStack Query para los datos del servidor             | 3                  | Librería gratuita |
-| P-008 | Zod para validación                                    | 3                  | Librería gratuita |
-| P-009 | Vitest para pruebas unitarias                          | 4                  | Librería gratuita |
-| P-010 | Alojamiento del frontend: Vercel de pago o alternativa gratuita | Por decidir | Servicio externo (sección 18) |
+| P-010 | Alojamiento de la publicación privada                  | 3                  | Servicio externo; por decidir (sección 18) |
 | P-011 | Librería de gráficos                                   | Cuando haya datos  | Librería gratuita; por elegir |
+| P-012 | API PageSpeed Insights para el análisis de webs        | 5                  | Servicio externo gratuito |
+
+Las propuestas P-004, P-005, P-007, P-008 y P-009 pasaron a ser las decisiones
+D-017 y D-020.
 
 ## 22. Riesgos y dependencias
 

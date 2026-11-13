@@ -1,4 +1,4 @@
-# ROADMAP.md — Las doce fases oficiales de DealHunter
+# ROADMAP.md — Las trece fases oficiales de DealHunter
 
 > El orden es estricto. No se empieza una fase sin haber terminado, verificado
 > y documentado la anterior, y sin autorización del propietario.
@@ -8,65 +8,46 @@
 **Estados posibles:** PENDIENTE · EN PROGRESO · COMPLETADA.
 Una fase solo pasa a COMPLETADA cuando todos sus criterios se han comprobado.
 
-| Fase | Nombre                                 | Estado      |
-| ---- | -------------------------------------- | ----------- |
-| 1    | Arquitectura y preparación             | COMPLETADA  |
-| 2    | Diseño visual y estructura principal   | EN PROGRESO |
-| 3    | Base de datos y autenticación          | PENDIENTE   |
-| 4    | Lead Hunter                            | PENDIENTE   |
-| 5    | Business Intelligence                  | PENDIENTE   |
-| 6    | Sales Command                          | PENDIENTE   |
-| 7    | Proposal Engine                        | PENDIENTE   |
-| 8    | Demo Factory                           | PENDIENTE   |
-| 9    | Revenue Analytics                      | PENDIENTE   |
-| 10   | Automatizaciones                       | PENDIENTE   |
-| 11   | Administración global                  | PENDIENTE   |
-| 12   | Seguridad, pruebas y despliegue        | PENDIENTE   |
+| Fase | Nombre                                                    | Estado      |
+| ---- | --------------------------------------------------------- | ----------- |
+| 1    | Arquitectura y preparación                                | COMPLETADA  |
+| 2    | Estructura visual provisional                             | COMPLETADA  |
+| 3    | Infraestructura mínima                                    | PENDIENTE   |
+| 4    | Lead Hunter                                               | PENDIENTE   |
+| 5    | Business Intelligence                                     | PENDIENTE   |
+| 6    | Sales Command                                             | PENDIENTE   |
+| 7    | Proposal Engine                                           | PENDIENTE   |
+| 8    | Demo Factory                                              | PENDIENTE   |
+| 9    | Revenue Analytics                                         | PENDIENTE   |
+| 10   | Automatizaciones                                          | PENDIENTE   |
+| 11   | Administración global                                     | PENDIENTE   |
+| 12   | Seguridad, pruebas y despliegue                           | PENDIENTE   |
+| 13   | Identidad visual definitiva y optimización de experiencia | PENDIENTE   |
 
-## PROPUESTA DE REORGANIZACIÓN · PENDIENTE DE APROBACIÓN
+## Reorganización aprobada por el propietario (2026-11-13)
 
-> Documentada el 2026-11-13 a petición del propietario. **Todavía no es el
-> roadmap oficial:** las fases de este documento no cambian hasta que el
-> propietario la apruebe.
+El propietario prioriza la funcionalidad real sobre la estética
+(`PROJECT_CONTEXT.md`, apartado 3.6). Respecto al roadmap inicial de doce
+fases cambian tres cosas:
 
-**Motivo.** El propietario ha decidido priorizar la funcionalidad real sobre
-la estética (`PROJECT_CONTEXT.md`, apartado 3.6).
+- La Fase 2 se cierra como estructura visual provisional.
+- La Fase 3 se reduce a la infraestructura mínima.
+- Se añade la Fase 13, que recoge todo el acabado visual aplazado.
 
-| N.º | Fase propuesta                                        | Cambio respecto al roadmap actual                                              |
-| --- | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
-| 1   | Arquitectura y preparación                            | Ninguno. COMPLETADA                                                            |
-| 2   | Estructura visual provisional                         | Se cierra tal como está. Su acabado pasa a la fase 13                          |
-| 3   | Infraestructura mínima                                | Sustituye a «Base de datos y autenticación». Solo lo que Lead Hunter necesita  |
-| 4   | Lead Hunter                                           | Mismo lugar. Alcance ampliado. En dos etapas (ver ajuste 1)                    |
-| 5   | Business Intelligence                                 | Mismo lugar                                                                    |
-| 6   | Sales Command                                         | Mismo lugar                                                                    |
-| 7   | Proposal Engine                                       | Mismo lugar                                                                    |
-| 8   | Demo Factory                                          | Mismo lugar                                                                    |
-| 9   | Revenue Analytics                                     | Mismo lugar                                                                    |
-| 10  | Automatizaciones                                      | Mismo lugar                                                                    |
-| 11  | Administración global                                 | Mismo lugar. Asume los roles y permisos completos                              |
-| 12  | Seguridad, pruebas y despliegue                       | Queda como auditoría y publicación finales (ver ajustes 2 y 3)                 |
-| 13  | Identidad visual definitiva y optimización de experiencia | Nueva. Recoge todo el acabado visual aplazado                              |
+Los seis módulos oficiales y su orden no cambian.
 
-El orden pedido por el propietario coincide con el del roadmap actual desde
-la fase 3. Los cambios reales son tres: cerrar la fase 2 como provisional,
-reducir la fase 3 a lo imprescindible y añadir la fase 13.
-
-**Ajustes técnicos que la propuesta incorpora**
+**Ajustes por dependencias, también aprobados**
 
 1. **Lead Hunter en dos etapas.** Detectar webs antiguas o con problemas de
-   móvil, rendimiento o SEO exige el motor de análisis, que pertenece a
-   Business Intelligence. Etapa 4A: búsqueda, datos, detección de negocios
-   sin web conocida, guardado, filtros, duplicados e historial. Etapa 4B:
-   esas cuatro señales, en cuanto exista el motor de la fase 5.
-2. **Seguridad mínima desde la fase 3.** Acceso privado, secretos en el
-   servidor y permisos en la base de datos no pueden esperar a la fase 12: en
-   cuanto haya datos de contacto reales deben estar protegidos.
-3. **Uso real antes de la fase 12.** Para que el propietario pueda usar Lead
-   Hunter hay que decidir pronto dónde se ejecuta: en un ordenador o
-   publicada de forma privada.
-4. **Límites y registro de consumo con la primera integración**, no en la
-   fase de administración.
+   móvil, rendimiento o SEO exige el motor de análisis de Business
+   Intelligence. La etapa 4A cubre la búsqueda y la gestión de resultados; la
+   etapa 4B añade esas señales cuando exista el motor de la Fase 5.
+2. **Seguridad mínima desde la Fase 3.** Acceso privado, claves en el servidor
+   y permisos en la base de datos, en cuanto haya datos reales.
+3. **Uso real antes de la Fase 12.** La aplicación será privada y accesible
+   desde distintos dispositivos, pero no se publica hasta que autenticación,
+   permisos y seguridad estén preparados.
+4. **Límites y registro de consumo con la primera integración.**
 
 ---
 
@@ -122,10 +103,11 @@ incluye la interfaz definitiva, ningún módulo, backend ni servicios externos.
 
 ---
 
-## Fase 2 · Diseño visual y estructura principal
+## Fase 2 · Estructura visual provisional
 
-**Estado:** EN PROGRESO. Implementada y verificada técnicamente el
-2026-11-13. Solo falta el último criterio: la validación del propietario.
+**Estado:** COMPLETADA como estructura visual provisional (2026-11-13). El
+propietario la mantiene tal como está y aplaza el acabado visual definitivo a
+la Fase 13. No se reconstruye ni se pule.
 
 **Objetivo.** Construcción de la interfaz general de DealHunter.
 
@@ -164,7 +146,8 @@ ningún módulo ni datos reales.
       Comprobado: solo existen cinco botones, todos con comportamiento real
       (abrir y cerrar el menú móvil y los tres paneles de la barra superior),
       y ningún campo ni formulario.
-- [ ] El propietario valida el resultado.
+- [x] El propietario valida el resultado. La aceptó como estructura
+      provisional el 2026-11-13.
 
 **Verificación técnica realizada (2026-11-13)**
 
@@ -193,63 +176,98 @@ analítica, automatizaciones y administración global.
 
 ---
 
-## Fase 3 · Base de datos y autenticación
+## Fase 3 · Infraestructura mínima
 
-**Estado:** PENDIENTE
+**Estado:** PENDIENTE. Su implementación espera la autorización del
+propietario.
 
-**Objetivo.** Configuración del backend, base de datos, usuarios y permisos.
+**Objetivo.** Lo imprescindible para que Lead Hunter trabaje con datos reales
+y protegidos.
 
-**Alcance.** Backend, esquema de datos base, inicio de sesión y permisos. No
-incluye la lógica de los módulos.
+**Alcance.** Backend, base de datos, acceso privado de un único usuario,
+protección de claves, registro de consumo y límites. No incluye los roles y
+permisos completos (Fase 11) ni el almacenamiento de archivos.
 
-**Requisito previo.** El propietario confirma el proveedor de backend y crea
-la cuenta. Claude no registra ni contrata servicios.
+**Decisiones del propietario.** Supabase, plan gratuito, región de la UE. La
+cuenta y el proyecto los crea el propietario. No se contratan planes de pago
+ni se inventan credenciales.
 
 **Tareas**
 
-- Confirmar el proveedor de backend y dónde se ejecuta la lógica de servidor.
-- Diseñar el esquema de datos base y versionarlo como migraciones.
-- Configurar la autenticación y el acceso por invitación.
-- Definir con el propietario los roles y aplicar los permisos.
+- El propietario crea la cuenta y el proyecto de Supabase.
+- Diseñar el esquema de datos mínimo y versionarlo como migraciones:
+  negocios, datos con su fuente y su fecha, búsquedas y consumo.
+- Configurar el acceso privado: un único usuario, sin registro público.
+- Aplicar permisos en la base de datos: sin sesión no se lee ni se modifica
+  nada.
+- Preparar las funciones de servidor y la protección de claves.
 - Preparar la configuración de entornos y la validación de datos.
-- Preparar el registro de actividad, errores y consumo.
+- Preparar el registro de consumo y los límites por fuente.
+- Preparar la publicación privada. Solo se publica cuando el acceso, los
+  permisos y la protección de claves estén comprobados y el propietario lo
+  apruebe. El proveedor de alojamiento está por decidir.
 
 **Criterios de finalización**
 
 - Un usuario autorizado puede iniciar y cerrar sesión.
-- Un usuario sin permiso no puede leer ni modificar datos, comprobado contra
-  la base de datos y no solo en la interfaz.
+- Sin sesión no se puede leer ni modificar ningún dato, comprobado contra la
+  base de datos y no solo en la interfaz.
 - Ningún secreto está en el repositorio ni en el código del navegador.
 - El esquema está versionado y documentado.
+- El consumo queda registrado y los límites se aplican.
 
 ---
 
 ## Fase 4 · Lead Hunter
 
-**Estado:** PENDIENTE
+**Estado:** PENDIENTE. Su implementación espera la autorización del
+propietario.
 
-**Objetivo.** Desarrollo del sistema de búsqueda y descubrimiento de negocios.
+**Objetivo.** Búsqueda real de negocios y gestión de los resultados.
 
-**Alcance.** Módulo A completo.
+**Alcance.** Módulo A completo (`PROJECT_CONTEXT.md`, sección 2), en dos
+etapas.
 
-**Requisito previo.** El propietario aprueba las fuentes de datos y su coste,
-y se verifica la base legal del tratamiento de los datos.
+**Decisiones del propietario.** Fuentes: OpenStreetMap y Overture Maps; Google
+Places no se usa como base. Mercado inicial y sectores:
+`PROJECT_CONTEXT.md`, apartado 3.7.
 
-**Tareas**
+**Paso previo · Prueba de cobertura.** Sin coste y sin programar la
+integración definitiva: cantidad y calidad de negocios por sector, campos
+disponibles y limitaciones, en la provincia de Zaragoza.
 
-- Evaluar fuentes legítimas de datos y presentar opciones y costes.
-- Búsqueda por localidad, provincia, país y sector.
-- Obtención de los datos de contacto públicos disponibles.
-- Detección de negocios sin página web o con webs mejorables.
-- Identificación de posibles necesidades comerciales.
-- Eliminación de duplicados, filtros avanzados y búsquedas guardadas.
+**Etapa 4A · Búsqueda y gestión de resultados**
+
+- Incorporar las fuentes aprobadas respetando sus licencias, atribuciones y
+  límites de uso.
+- Búsqueda por país, provincia, localidad, sector y tipo de negocio.
+- Datos de cada negocio, cada uno con su fuente y su fecha.
+- Estado de la web de cada negocio: verificada, no encontrada en las fuentes
+  o sin web confirmado.
+- Indicio de presencia digital insuficiente a partir de los datos
+  disponibles, marcado como estimación.
+- Eliminación de duplicados, también entre fuentes.
+- Consultar, filtrar, ordenar y guardar negocios.
+- Guardar búsquedas y conservar el historial.
+- Registro y límites de consumo.
+
+**Etapa 4B · Señales de oportunidad** (requiere el motor de análisis de la
+Fase 5)
+
+- Webs antiguas.
+- Problemas de experiencia móvil.
+- Problemas de rendimiento.
+- Oportunidades de mejora SEO.
+- Posibles necesidades comerciales.
 
 **Criterios de finalización**
 
 - Todas las funciones del Módulo A funcionan con datos reales.
-- Se respetan las condiciones de uso de cada fuente.
-- Cada dato guarda su origen y su fecha.
-- No se generan registros duplicados.
+- Se respetan las licencias, las atribuciones y los límites de cada fuente.
+- Cada dato guarda su fuente y su fecha, y se distingue entre verificado, no
+  encontrado y estimado.
+- Nunca se afirma que un negocio no tiene web sin haberlo comprobado.
+- No se generan registros duplicados, y esa lógica tiene pruebas automáticas.
 - El consumo de cada fuente queda registrado y limitado.
 
 ---
@@ -260,7 +278,8 @@ y se verifica la base legal del tratamiento de los datos.
 
 **Objetivo.** Desarrollo de los análisis y puntuaciones comerciales.
 
-**Alcance.** Módulo B completo.
+**Alcance.** Módulo B completo. Su motor de análisis alimenta además la etapa
+4B de Lead Hunter.
 
 **Tareas**
 
@@ -414,7 +433,8 @@ impliquen comunicaciones comerciales exigen verificar antes su base legal.
 
 **Objetivo.** Construcción del sistema de administración de la plataforma.
 
-**Alcance.** Las doce áreas de `PROJECT_CONTEXT.md`, apartado 3.3.
+**Alcance.** Las doce áreas de `PROJECT_CONTEXT.md`, apartado 3.3. Incluye los
+roles y permisos completos, que la Fase 3 deja en un único usuario.
 
 **Tareas**
 
@@ -435,9 +455,10 @@ impliquen comunicaciones comerciales exigen verificar antes su base legal.
 
 **Estado:** PENDIENTE
 
-**Objetivo.** Auditoría, optimización, pruebas y publicación.
+**Objetivo.** Auditoría, optimización, pruebas y publicación definitiva.
 
-**Alcance.** Toda la plataforma.
+**Alcance.** Toda la plataforma. La seguridad mínima y la publicación privada
+se adelantan a la Fase 3; esta fase es la revisión completa final.
 
 **Requisito previo.** El propietario confirma el proveedor de alojamiento y
 sus condiciones de uso.
@@ -456,3 +477,26 @@ sus condiciones de uso.
 - Las pruebas de los flujos principales pasan.
 - La aplicación está publicada y es accesible solo para usuarios autorizados.
 - La documentación refleja el estado final.
+
+---
+
+## Fase 13 · Identidad visual definitiva y optimización de experiencia
+
+**Estado:** PENDIENTE
+
+**Objetivo.** Acabado visual y de experiencia del producto, una vez
+construido el núcleo funcional.
+
+**Alcance.** Todo lo aplazado por decisión del propietario: logotipo e
+identidad visual definitivos, animaciones, transiciones, efectos, rediseño de
+tarjetas y elementos decorativos.
+
+**Tareas**
+
+- Se definirán con el propietario al comenzar la fase.
+
+**Criterios de finalización**
+
+- El propietario valida la identidad visual definitiva.
+- La interfaz sigue funcionando en móvil y en escritorio, y sin datos
+  ficticios.

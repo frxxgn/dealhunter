@@ -5,6 +5,17 @@ más antigua. Las fechas usan el formato AAAA-MM-DD.
 
 ## [Sin publicar]
 
+### Decisiones del propietario (2026-11-13)
+
+- Roadmap reorganizado y aprobado: 13 fases. La Fase 2 se cierra como
+  estructura visual provisional, la Fase 3 pasa a ser «Infraestructura
+  mínima», Lead Hunter se divide en dos etapas y se añade la Fase 13
+  (`ROADMAP.md`).
+- Backend, fuentes de datos, mercado inicial, publicación y librerías
+  aprobados (`PROJECT_CONTEXT.md`, apartado 3.7; decisiones D-017 a D-021 en
+  `ARCHITECTURE.md`, sección 21).
+- No se ha instalado, contratado ni programado nada.
+
 ### Cambio de prioridades (2026-11-13)
 
 - El propietario prioriza la funcionalidad real (Lead Hunter y Business

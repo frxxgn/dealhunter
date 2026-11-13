@@ -16,14 +16,17 @@ Analytics.
 
 ## Estado del desarrollo
 
-**Fase 2 de 12 (Diseño visual y estructura principal): implementada y
-verificada; pendiente de la validación del propietario.**
+**Fases 1 y 2 de 13 completadas. Siguiente: infraestructura mínima y Lead
+Hunter, pendientes de la autorización del propietario.**
 
-La aplicación tiene su interfaz principal: barra lateral, barra superior,
-dashboard y la página inicial de los seis módulos, adaptada de móvil a
-pantallas grandes. **Todavía no hay ninguna funcionalidad de negocio**: no
-hay datos, backend ni integraciones, y todas las secciones muestran estados
-vacíos.
+La aplicación tiene su interfaz principal, que se mantiene como estructura
+visual provisional: barra lateral, barra superior, dashboard y la página
+inicial de los seis módulos. **Todavía no hay ninguna funcionalidad de
+negocio**: no hay datos, backend ni integraciones, y todas las secciones
+muestran estados vacíos.
+
+La prioridad del proyecto es la funcionalidad real (encontrar negocios) antes
+que el acabado visual.
 
 Estado detallado: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md). Plan completo:
 [ROADMAP.md](ROADMAP.md).
@@ -39,8 +42,8 @@ Estado detallado: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md). Plan completo:
 - Geist (tipografía alojada con la aplicación)
 - oxlint
 
-Candidatas para fases posteriores, todavía sin instalar ni contratar: Supabase
-(autenticación, base de datos y almacenamiento) y Vercel (despliegue).
+Aprobado y todavía sin instalar ni contratar: Supabase (base de datos, acceso
+privado y funciones de servidor), en su plan gratuito.
 
 ## Requisitos
 

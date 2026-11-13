@@ -33,9 +33,10 @@ está en `PROJECT_CONTEXT.md`, sección 2.
 
 React 19, Vite 8, TypeScript 7 (estricto), Tailwind CSS 4, React Router 8,
 lucide-react (iconos), Geist (tipografía alojada con la aplicación) y oxlint,
-con npm y Node.js 22.12 o superior. Candidatas no instaladas: Supabase
-(Fase 3) y Vercel (Fase 12). Versiones y motivos: `ARCHITECTURE.md`,
-secciones 2 y 21.
+con npm y Node.js 22.12 o superior. Aprobadas y todavía sin instalar:
+Supabase (plan gratuito, región UE), Supabase JS, Zod, TanStack Query y
+Vitest; se instalan solo cuando su fase las necesite. Alojamiento: por
+decidir. Versiones y motivos: `ARCHITECTURE.md`, secciones 2 y 21.
 
 ## Comandos verificados
 
@@ -112,6 +113,12 @@ Tokens y componentes disponibles: `ARCHITECTURE.md`, sección 8.
 - No usar Next.js sin presentar antes una justificación técnica al propietario.
 - No crear microservicios sin una necesidad real.
 - No contratar, activar ni registrar servicios externos. No generar costes.
+  Las cuentas las crea el propietario. No inventar credenciales.
+- Fuentes de datos aprobadas: OpenStreetMap y Overture Maps. Google Places no
+  se usa como base. Respetar licencias, atribuciones y límites de uso.
+- No publicar la aplicación hasta que autenticación, permisos y seguridad
+  estén preparados y el propietario lo apruebe.
+- No guardar en el repositorio datos de negocios descargados de las fuentes.
 - No añadir APIs, servicios ni dependencias de pago sin aprobación.
 - No implementar scraping prohibido ni comunicaciones comerciales automáticas
   sin base legal verificada y autorización.

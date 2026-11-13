@@ -267,16 +267,46 @@ Sobre servicios y costes:
 Los seis módulos oficiales no cambian. El cambio afecta al orden de
 desarrollo, no a la identidad ni a los objetivos del producto.
 
+### 3.7 Decisiones del propietario para Lead Hunter (2026-11-13)
+
+**Mercado inicial.** País: España. Provincia: Zaragoza. Sectores prioritarios:
+
+1. Reformas y construcción.
+2. Climatización e instaladores.
+3. Electricistas y fontaneros.
+4. Talleres mecánicos.
+5. Pintores y limpieza.
+6. Jardinería.
+7. Restaurantes.
+
+**Fuentes de datos.** OpenStreetMap y Overture Maps. Google Places no se
+utilizará como base. Se respetan las licencias, las atribuciones, los límites
+de uso y la procedencia de cada registro.
+
+**Backend.** Supabase, plan gratuito, región de la UE. No se contratan ni se
+activan planes de pago. La cuenta y el proyecto los crea el propietario cuando
+corresponda. No se inventan credenciales.
+
+**Publicación.** Aplicación privada, accesible desde distintos dispositivos.
+No se publica hasta que la autenticación, los permisos y la seguridad estén
+preparados. Cloudflare Pages puede evaluarse, sin contratar nada ni dar por
+confirmadas condiciones comerciales que no se hayan verificado.
+
+**Librerías aprobadas.** Supabase JS, Zod, TanStack Query y Vitest. Se
+instalan únicamente cuando sean necesarias para su fase.
+
+**Método.** Antes de programar la integración se hace una prueba de cobertura
+sin coste. No se inventan cifras de cobertura. La implementación de Lead
+Hunter espera la autorización del propietario.
+
 ## 4. Estado actual
 
 | Campo                    | Valor                                                                                         |
 | ------------------------ | --------------------------------------------------------------------------------------------- |
-| Fase actual              | Transición. Fase 2 aceptada por el propietario como estructura provisional; roadmap en reorganización |
-| Estado                   | Fase 2: su cierre formal como «provisional» está pendiente de confirmar. Nuevo orden de desarrollo: PROPUESTO, pendiente de aprobación (`ROADMAP.md`) |
-| Última tarea completada  | Análisis de infraestructura y de fuentes de datos para Lead Hunter, y propuesta de reorganización del roadmap (2026-11-13) |
-| Próxima tarea autorizada | **Ninguna.** No se programa nada hasta que el propietario apruebe las decisiones de la sección 10 |
-
-Fases anteriores: Fase 1 COMPLETADA (2026-11-13).
+| Fase actual              | Fase 3 · Infraestructura mínima, sin iniciar. Trabajo previo en curso: prueba de cobertura para Lead Hunter |
+| Estado                   | Roadmap reorganizado y aprobado (13 fases). Fases 1 y 2 COMPLETADAS; la 2, como estructura visual provisional |
+| Última tarea completada  | Decisiones del propietario documentadas (2026-11-13)                                          |
+| Próxima tarea autorizada | Prueba de cobertura sin coste en la provincia de Zaragoza. **No está autorizada la implementación** de la infraestructura ni de Lead Hunter |
 
 ## 5. Arquitectura actual (resumen)
 
@@ -340,6 +370,14 @@ Registro completo con motivos en `ARCHITECTURE.md`, sección 21. Resumen:
 - D-014 · Menú móvil y paneles flotantes propios, sin librería de primitivas.
 - D-015 · Escala global de la interfaz en pantallas grandes.
 - D-016 · La rama principal es `main`; nunca se fuerza un push.
+- D-017 · Backend en Supabase, plan gratuito y región de la UE.
+- D-018 · Fuentes de Lead Hunter: OpenStreetMap y Overture Maps. Google Places
+  no se usa como base.
+- D-019 · Aplicación privada; no se publica hasta que autenticación, permisos
+  y seguridad estén preparados.
+- D-020 · Librerías aprobadas: Supabase JS, Zod, TanStack Query y Vitest, a
+  instalar cuando su fase las necesite.
+- D-021 · Roadmap reorganizado en 13 fases: funcionalidad antes que estética.
 
 Decisiones de diseño de la Fase 2 que el propietario puede revisar al validar:
 
@@ -387,29 +425,24 @@ Componentes y archivos creados: `CHANGELOG.md`, versión 0.2.0.
 - Automatizaciones: Fase 10.
 - Administración global (apartado 3.3): Fase 11.
 - Auditoría de seguridad, pruebas y despliegue: Fase 12.
+- Identidad visual definitiva y acabados: Fase 13.
 
 ## 10. Decisiones pendientes de aprobación del propietario
 
-El análisis que las sustenta está en `ARCHITECTURE.md`, secciones 5 y 14.
-
-| N.º | Decisión                                                                                   | Recomendación                                                                         | Necesaria para        |
-| --- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | --------------------- |
-| 1   | Cerrar la Fase 2 como «estructura provisional» y llevar el acabado visual a una fase final | Sí                                                                                    | Reorganizar el roadmap |
-| 2   | Aprobar el nuevo orden del roadmap (propuesta en `ROADMAP.md`)                             | Sí, con los ajustes técnicos que incluye                                              | Empezar la infraestructura |
-| 3   | Backend: Supabase, plan gratuito, región de la UE                                          | Sí. La cuenta y el proyecto los crea el propietario                                   | Infraestructura       |
-| 4   | Acceso: un único usuario privado al inicio; roles y permisos completos más adelante        | Sí                                                                                    | Infraestructura       |
-| 5   | Fuentes de datos de Lead Hunter                                                            | OpenStreetMap y Overture Maps (sin coste). Google Places no como base de datos        | Lead Hunter           |
-| 6   | Mercado objetivo: países, provincias y sectores prioritarios                               | Lo define el propietario; con ello se hace una prueba de cobertura sin coste          | Lead Hunter           |
-| 7   | Dónde se usa la aplicación: solo en un ordenador o publicada de forma privada              | Publicación privada temprana en un alojamiento gratuito que admita uso comercial      | Usar Lead Hunter      |
-| 8   | Análisis de webs con la API PageSpeed Insights de Google                                   | Sí. Es gratuita; la clave la crea el propietario                                      | Business Intelligence |
-| 9   | Librerías gratuitas: cliente de Supabase, Zod, TanStack Query y Vitest                     | Aprobarlas; se instalan cuando se necesiten                                           | Infraestructura       |
-| 10  | Modelo de datos multiorganización, para la futura evolución a SaaS                         | Sí: evita migrar todos los datos más adelante                                         | Infraestructura       |
-| 11  | Verificación legal del uso de los datos de contacto (RGPD y LSSI)                          | Hacerla antes de usar los datos para contactar con negocios                           | Antes de contactar    |
-| 12  | Catálogo de automatizaciones                                                               | Lo define y aprueba el propietario                                                    | Fase de automatizaciones |
+| N.º | Decisión                                                                              | Recomendación                                                        | Necesaria para        |
+| --- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------- |
+| 1   | Autorizar el comienzo de la implementación (Fase 3 y etapa 4A de Lead Hunter)         | Tras revisar la prueba de cobertura                                  | Empezar a programar   |
+| 2   | Crear la cuenta y el proyecto de Supabase (lo hace el propietario)                    | Al autorizar la Fase 3; región de la UE                              | Fase 3                |
+| 3   | Proveedor de alojamiento para la publicación privada                                  | Evaluar Cloudflare Pages; verificar sus condiciones antes de decidir | Publicación privada   |
+| 4   | Modelo de datos multiorganización, para la futura evolución a SaaS                    | Sí: evita migrar todos los datos más adelante                        | Fase 3                |
+| 5   | Verificación legal del uso de los datos de contacto (RGPD y LSSI)                     | Hacerla antes de usar los datos para contactar con negocios          | Antes de contactar    |
+| 6   | Análisis de webs con la API PageSpeed Insights de Google (clave creada por el propietario) | Sí; es gratuita                                                 | Fase 5                |
+| 7   | Catálogo de automatizaciones                                                          | Lo define y aprueba el propietario                                   | Fase 10               |
 
 Resueltas por el propietario: rama principal (`main`), idioma (solo español),
-tema (solo oscuro), logotipo (texto provisional), tipografía (Geist) y
-prioridad de la funcionalidad sobre la estética (apartado 3.6).
+tema (solo oscuro), logotipo (texto provisional), tipografía (Geist),
+prioridad de la funcionalidad (apartado 3.6) y las seis decisiones del
+apartado 3.7.
 
 ## 11. MEJORAS PENDIENTES DE APROBACIÓN
 
@@ -441,13 +474,10 @@ No hay ninguna mejora funcional propuesta.
 
 ## 13. Información necesaria para continuar
 
-1. Respuesta del propietario a las decisiones de la sección 10. Las n.º 1 a 6
-   bastan para empezar la infraestructura y Lead Hunter.
-2. Si se confirma Supabase: que el propietario cree la cuenta y el proyecto.
-   Claude no registra ni contrata servicios.
-3. Las sesiones de Claude en la nube tienen la red limitada: para probar las
-   fuentes de datos habrá que permitir sus dominios en la configuración del
-   entorno.
+1. Autorización del propietario para empezar la implementación.
+2. Cuenta y proyecto de Supabase, creados por el propietario. Claude no
+   registra ni contrata servicios, ni inventa credenciales.
+3. Decisión sobre el alojamiento de la publicación privada.
 
 Repositorio: la rama principal es `main`. El propietario autorizó el
 2026-11-13 subir el trabajo directamente a `main`, siempre sin forzar.
