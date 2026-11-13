@@ -1,7 +1,7 @@
 {
   "name": "dealhunter",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Plataforma de inteligencia comercial y gestión de oportunidades empresariales de WebNovalius.",
   "type": "module",
   "engines": {
@@ -15,8 +15,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "lucide-react": "^1.72.0",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "react-router": "^8.5.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.5",

@@ -1,8 +1,12 @@
 # shared
 
-Código reutilizable por varios módulos: componentes de interfaz, hooks,
-utilidades y tipos comunes. Se crea a medida que se necesite (a partir de la
-Fase 2); ahora está vacío.
+Código reutilizable por varios módulos.
 
-Regla: `shared` nunca importa desde `modules`. Detalle en `ARCHITECTURE.md`,
-secciones 3 y 4.
+| Carpeta       | Contenido                                                        |
+| ------------- | ---------------------------------------------------------------- |
+| `components/` | Sistema de componentes: paneles, estados vacíos, métricas, etc.  |
+| `hooks/`      | Hooks comunes                                                    |
+| `lib/`        | Utilidades sin dependencia de React                              |
+
+Regla: `shared` nunca importa desde `modules` ni desde `app`. Detalle en
+`ARCHITECTURE.md`, secciones 3, 4 y 8.

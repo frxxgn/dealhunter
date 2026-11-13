@@ -3,38 +3,202 @@
 /*
  * Tokens de diseño de DealHunter (Tailwind CSS v4, configuración en CSS).
  *
- * Fase 1: conjunto mínimo y PROVISIONAL que fija la dirección artística
- * (negro profundo, grafito, acento verde esmeralda). Los valores definitivos,
- * la tipografía y el resto de la escala se cierran en la Fase 2.
- *
- * Regla: los componentes usan estos tokens (bg-ink-950, text-accent...), nunca
- * colores sueltos escritos a mano.
+ * Tema exclusivamente oscuro: negro profundo, grafito y acento verde
+ * esmeralda. Los componentes usan estos tokens (bg-graphite-900, text-fg,
+ * border-line, text-accent...), nunca colores escritos a mano.
  */
 @theme {
-  /* Negro profundo: fondo base de la aplicación */
+  /* Tipografía: Geist, alojada con la aplicación (se importa en main.tsx) */
+  --font-sans:
+    'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+
+  /* Negro profundo: fondos principales */
   --color-ink-950: #050607;
-  --color-ink-900: #0a0c0d;
+  --color-ink-900: #08090a;
 
-  /* Grafito: superficies elevadas (tarjetas, paneles, barras) */
-  --color-graphite-900: #111416;
-  --color-graphite-800: #181c1f;
-  --color-graphite-700: #22272b;
+  /* Grafito: superficies secundarias, tarjetas y paneles */
+  --color-graphite-900: #0d0f11;
+  --color-graphite-800: #131618;
+  --color-graphite-700: #1a1e21;
+  --color-graphite-600: #24292d;
+  --color-graphite-500: #33393e;
 
-  /* Acento: verde esmeralda (reutiliza la paleta emerald de Tailwind) */
+  /* Bordes discretos */
+  --color-line: rgb(255 255 255 / 0.07);
+  --color-line-strong: rgb(255 255 255 / 0.13);
+
+  /* Texto: blanco suave y grises neutros */
+  --color-fg: #eceeed;
+  --color-fg-muted: #a4aaa8;
+  --color-fg-subtle: #7f8784;
+
+  /* Acento: verde esmeralda */
   --color-accent: var(--color-emerald-400);
   --color-accent-strong: var(--color-emerald-500);
+
+  /* Ancho máximo del contenido en pantallas grandes */
+  --container-shell: 110rem;
+
+  /* Profundidad */
+  --shadow-panel:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.04),
+    0 18px 40px -28px rgb(0 0 0 / 0.9);
+  --shadow-pop:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.06),
+    0 24px 64px -16px rgb(0 0 0 / 0.85);
+
+  /* Movimiento */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-enter: enter 0.5s var(--ease-out-expo) backwards;
+  --animate-pop: pop 0.18s var(--ease-out-expo) both;
+  --animate-drawer: drawer 0.3s var(--ease-out-expo) both;
+  --animate-fade: fade 0.25s ease-out both;
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes drawer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {
   :root {
-    /* Modo oscuro predeterminado */
     color-scheme: dark;
+  }
+
+  html {
+    scrollbar-color: var(--color-graphite-500) transparent;
+    scrollbar-gutter: stable;
+  }
+
+  /*
+   * Pantallas grandes: toda la interfaz está medida en rem, así que subir el
+   * tamaño base la escala entera de forma proporcional y aprovecha el espacio.
+   */
+  @media (min-width: 120rem) {
+    html {
+      font-size: 106.25%;
+    }
+  }
+  @media (min-width: 150rem) {
+    html {
+      font-size: 118.75%;
+    }
   }
 
   body {
     background-color: var(--color-ink-950);
-    color: var(--color-zinc-200);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-accent) 30%, transparent);
+  }
+
+  /* Foco visible y coherente en todos los elementos interactivos */
+  :focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--color-accent) 85%, transparent);
+    outline-offset: 2px;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Se respeta la preferencia del sistema de reducir el movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Entrada escalonada de los bloques de una página */
+  .stagger > * {
+    animation: var(--animate-enter);
+  }
+  .stagger > *:nth-child(2) {
+    animation-delay: 60ms;
+  }
+  .stagger > *:nth-child(3) {
+    animation-delay: 120ms;
+  }
+  .stagger > *:nth-child(4) {
+    animation-delay: 180ms;
+  }
+  .stagger > *:nth-child(n + 5) {
+    animation-delay: 240ms;
+  }
+}
+
+/* Retícula decorativa del fondo de la aplicación */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Líneas de referencia de un gráfico vacío */
+@utility chart-grid {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 100% 25%;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
 }

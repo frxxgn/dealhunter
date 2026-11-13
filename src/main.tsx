@@ -1,5 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+// Tipografía Geist, alojada con la aplicación (sin peticiones a terceros).
+import '@fontsource-variable/geist'
 import { App } from '@/app/App'
 import '@/styles/index.css'
 

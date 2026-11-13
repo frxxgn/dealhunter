@@ -15,4 +15,6 @@ ninguno más (ver `CLAUDE.md`, regla absoluta de no inventar).
 - Alcance funcional de cada módulo: `PROJECT_CONTEXT.md`, sección 2.
 - Estructura interna y reglas de dependencia: `ARCHITECTURE.md`, sección 4.
 
-Ningún módulo está implementado todavía.
+Cada módulo tiene su página inicial (`pages/`) y su API pública (`index.ts`),
+creadas en la Fase 2. Son solo estructura visual con estados vacíos: ninguna
+funcionalidad de ningún módulo está implementada todavía.
