@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens de diseño de DealHunter (Tailwind CSS v4, configuración en CSS).
+ *
+ * Fase 1: conjunto mínimo y PROVISIONAL que fija la dirección artística
+ * (negro profundo, grafito, acento verde esmeralda). Los valores definitivos,
+ * la tipografía y el resto de la escala se cierran en la Fase 2.
+ *
+ * Regla: los componentes usan estos tokens (bg-ink-950, text-accent...), nunca
+ * colores sueltos escritos a mano.
+ */
+@theme {
+  /* Negro profundo: fondo base de la aplicación */
+  --color-ink-950: #050607;
+  --color-ink-900: #0a0c0d;
+
+  /* Grafito: superficies elevadas (tarjetas, paneles, barras) */
+  --color-graphite-900: #111416;
+  --color-graphite-800: #181c1f;
+  --color-graphite-700: #22272b;
+
+  /* Acento: verde esmeralda (reutiliza la paleta emerald de Tailwind) */
+  --color-accent: var(--color-emerald-400);
+  --color-accent-strong: var(--color-emerald-500);
+}
+
+@layer base {
+  :root {
+    /* Modo oscuro predeterminado */
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-zinc-200);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
